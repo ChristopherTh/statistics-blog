@@ -1,1 +1,1 @@
-Sitemap: https://fastpages.fast.ai/sitemap.xml
+Sitemap: https://christopherth.github.io/statistics-blog/sitemap.xml
