@@ -4,4 +4,21 @@ title: About Me
 permalink: /about/
 ---
 
-Hello I am a statistican from a small german island ![](/images/dest.png)
+Hello, I am a statistician from a small German island. I graduated from the University of Bonn with a Master of Economics, where I specialized in statistics. In Bonn, I took courses where I learned about the following
+
+
+* econometrics (linear model, instrumental variables and panel data. )
+* multivariate statistics
+* the theory behind extremum estimators
+* modeling uni- and multivariate time series
+* kalman filter and MCMC
+* the lasso family
+* functional data analysis
+* generalized linear models
+* gradient boosting
+
+In my free time, I learned about other techniques for example I read books about methods like gaussian process, UMAP, GLMM, deep learning and NLP.
+
+Regarding the economics part, I did a mix of macroeconomics (DGSE) and micro theory (Game Theory, Auction Design, Mechanism Design)
+
+
