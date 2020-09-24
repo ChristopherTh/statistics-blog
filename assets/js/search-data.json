@@ -1,17 +1,6 @@
 {
   
     
-        "post0": {
-            "title": "Title",
-            "content": "import numpy as np . X = np.random.normal(size = (400, 4)) Y = np.random.normal(size = 400) . ValueError Traceback (most recent call last) &lt;ipython-input-5-52d034c4625b&gt; in &lt;module&gt; 2 Y = np.random.normal(size = 400) 3 -&gt; 4 X @ Y ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)-&gt;(n?,m?) (size 400 is different from 4) . %timeit beta_ols = np.linalg.inv(X.T @ X) @ X.T @ Y . 153 µs ± 76.5 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each) . %timeit np.linalg.inv(np.einsum(&#39;ji,jk-&gt;ik&#39;, X, X)) @ np.einsum(&#39;ji,j-&gt;i&#39;, X, Y) . 92.5 µs ± 292 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each) . np.einsum(&#39;an,ak-&gt;nk&#39;, X, X) . array([[377.90745388, 20.03593703, -5.38765227, -7.35685136], [ 20.03593703, 377.4622614 , 16.2115516 , 14.52466439], [ -5.38765227, 16.2115516 , 407.8323583 , -56.63311512], [ -7.35685136, 14.52466439, -56.63311512, 444.38849816]]) . X.T @ X . array([[377.90745388, 20.03593703, -5.38765227, -7.35685136], [ 20.03593703, 377.4622614 , 16.2115516 , 14.52466439], [ -5.38765227, 16.2115516 , 407.8323583 , -56.63311512], [ -7.35685136, 14.52466439, -56.63311512, 444.38849816]]) .",
-            "url": "https://christopherth.github.io/statistics-blog/2020/09/21/Untitled.html",
-            "relUrl": "/2020/09/21/Untitled.html",
-            "date": " • Sep 21, 2020"
-        }
-        
-    
-  
-    
   
     
   
@@ -34,7 +23,7 @@
   
 
   
-      ,"page1": {
+      "page1": {
           "title": "About Me",
           "content": "Hello, I am a statistician from a small German island. I graduated from the University of Bonn with a Master of Economics, where I specialized in statistics. In Bonn, I took courses on . econometrics | multivariate statistics | nonparametric statistics | the theory behind m-estimators | time series | the lasso family | functional data analysis | . In my free time, I learned about other techniques for example I read books about methods like gaussian process, UMAP, GLMM, deep learning and NLP. . Regarding the economics part, I did a mix of macroeconomics (DGSE) and micro theory (Game Theory, Auction Design, Mechanism Design) .",
           "url": "https://christopherth.github.io/statistics-blog/about/",
