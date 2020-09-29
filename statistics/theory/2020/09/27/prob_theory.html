@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>(basic) Probability Theory | Statistics-Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="(basic) Probability Theory" />
+<meta name="author" content="Christopher Thiemann" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="My reference notebook for probability theory." />
+<meta property="og:description" content="My reference notebook for probability theory." />
+<link rel="canonical" href="https://christopherth.github.io/statistics-blog/statistics/theory/2020/09/27/prob_theory.html" />
+<meta property="og:url" content="https://christopherth.github.io/statistics-blog/statistics/theory/2020/09/27/prob_theory.html" />
+<meta property="og:site_name" content="Statistics-Blog" />
+<meta property="og:image" content="https://christopherth.github.io/statistics-blog/images/empirical_distribution_function.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-09-27T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"(basic) Probability Theory","dateModified":"2020-09-27T00:00:00-05:00","datePublished":"2020-09-27T00:00:00-05:00","author":{"@type":"Person","name":"Christopher Thiemann"},"image":"https://christopherth.github.io/statistics-blog/images/empirical_distribution_function.png","description":"My reference notebook for probability theory.","mainEntityOfPage":{"@type":"WebPage","@id":"https://christopherth.github.io/statistics-blog/statistics/theory/2020/09/27/prob_theory.html"},"@type":"BlogPosting","url":"https://christopherth.github.io/statistics-blog/statistics/theory/2020/09/27/prob_theory.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/statistics-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://christopherth.github.io/statistics-blog/feed.xml" title="Statistics-Blog" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-175674558-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+<link rel="shortcut icon" type="image/x-icon" href="/statistics-blog/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>(basic) Probability Theory | Statistics-Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="(basic) Probability Theory" />
+<meta name="author" content="Christopher Thiemann" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="My reference notebook for probability theory." />
+<meta property="og:description" content="My reference notebook for probability theory." />
+<link rel="canonical" href="https://christopherth.github.io/statistics-blog/statistics/theory/2020/09/27/prob_theory.html" />
+<meta property="og:url" content="https://christopherth.github.io/statistics-blog/statistics/theory/2020/09/27/prob_theory.html" />
+<meta property="og:site_name" content="Statistics-Blog" />
+<meta property="og:image" content="https://christopherth.github.io/statistics-blog/images/empirical_distribution_function.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-09-27T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"(basic) Probability Theory","dateModified":"2020-09-27T00:00:00-05:00","datePublished":"2020-09-27T00:00:00-05:00","author":{"@type":"Person","name":"Christopher Thiemann"},"image":"https://christopherth.github.io/statistics-blog/images/empirical_distribution_function.png","description":"My reference notebook for probability theory.","mainEntityOfPage":{"@type":"WebPage","@id":"https://christopherth.github.io/statistics-blog/statistics/theory/2020/09/27/prob_theory.html"},"@type":"BlogPosting","url":"https://christopherth.github.io/statistics-blog/statistics/theory/2020/09/27/prob_theory.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://christopherth.github.io/statistics-blog/feed.xml" title="Statistics-Blog" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-175674558-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/statistics-blog/">Statistics-Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/statistics-blog/about/">About Me</a><a class="page-link" href="/statistics-blog/search/">Search</a><a class="page-link" href="/statistics-blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">(basic) Probability Theory</h1><p class="page-description">My reference notebook for probability theory.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-09-27T00:00:00-05:00" itemprop="datePublished">
+        Sep 27, 2020
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Christopher Thiemann</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      8 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/statistics-blog/categories/#statistics">statistics</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/statistics-blog/categories/#theory">theory</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/ChristopherTh/statistics-blog/tree/master/_notebooks/2020-09-27-prob_theory.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/statistics-blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/ChristopherTh/statistics-blog/blob/master/_notebooks/2020-09-27-prob_theory.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/statistics-blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#The-Model">The Model </a></li>
+<li class="toc-entry toc-h2"><a href="#Laplace-Distribution">Laplace Distribution </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Example:-Birthday-Problem">Example: Birthday Problem </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Random-Variables-(r.v.s)">Random Variables (r.v.s) </a></li>
+<li class="toc-entry toc-h2"><a href="#Fundamental-Rules">Fundamental Rules </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Union-of-two-sets">Union of two sets </a></li>
+<li class="toc-entry toc-h3"><a href="#Rule-of-total-probability">Rule of total probability </a></li>
+<li class="toc-entry toc-h3"><a href="#Chain-rule">Chain rule </a></li>
+<li class="toc-entry toc-h3"><a href="#Product-rule">Product rule </a></li>
+<li class="toc-entry toc-h3"><a href="#Conditional-probability">Conditional probability </a></li>
+<li class="toc-entry toc-h3"><a href="#Bayes-rule">Bayes rule </a></li>
+<li class="toc-entry toc-h3"><a href="#Independence">Independence </a></li>
+<li class="toc-entry toc-h3"><a href="#Cumulative-distribution-function-(cdf)">Cumulative distribution function (cdf) </a></li>
+<li class="toc-entry toc-h3"><a href="#Quantiles">Quantiles </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Joint-Probability-distributions">Joint Probability distributions </a></li>
+<li class="toc-entry toc-h2"><a href="#Expected-Value">Expected Value </a></li>
+<li class="toc-entry toc-h2"><a href="#Variance">Variance </a></li>
+<li class="toc-entry toc-h2"><a href="#Two-important-asyptotic-results">Two important asyptotic results </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Law-of-large-numbers">Law of large numbers </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Example-Relative-Frequency">Example Relative Frequency </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#Central-limit-theorem-(clt)">Central limit theorem (clt) </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Plot-for-blog-post">Plot for blog post </a></li>
+<li class="toc-entry toc-h2"><a href="#Sources">Sources </a></li>
+<li class="toc-entry toc-h2"><a href="#References">References </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-09-27-prob_theory.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-Model">
+<a class="anchor" href="#The-Model" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Model<a class="anchor-link" href="#The-Model"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Define $(\Omega, \mathcal{A}, P)$ as probability space. $\Omega$ is called the "sample space". In this set are all possible outcomes of an experiment. $A \subseteq \Omega $ is called an event. It is a collection of possible outcomes of an experiment. The family of events is then denoted by $\mathcal{A}$, so $ A \in \mathcal{A}$. P is called the probability measure. It is a mapping $P: \Omega \rightarrow [0, 1]$. We require the probability measure to have the following properties (Axioms of propability).</p>
+<ul>
+<li>$P(\emptyset) = 0$</li>
+<li>$P(\Omega) = 1$</li>
+<li>$P(\cup_{i=1}^\infty A_i) = \sum_{i=1}^\infty P(A_i)$ for all pairwise disjoint $A_i$ $(\sigma - additivity)$</li>
+</ul>
+<p>Note $\sigma - additivity$ implies additivity so we we can imply sum up the propbability of finitly many pairwise disjoint sets.</p>
+<p>If our experiment can only has countale many outcomes the nwe can set $\mathcal{A} = \mathcal{P}(\Omega)$ where $\mathcal{P}$ is the power set. If it is uncountable for example real numbers, then it is not posible to define a propability measure for all subsets of $\Omega$ such that the properties of the measure are fulfilled. So we can not take the powerset in this case but have to restirct to  a smaller class of possible events. Later we  will see that the Borel is is a sutiable class of events.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Laplace-Distribution">
+<a class="anchor" href="#Laplace-Distribution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Laplace Distribution<a class="anchor-link" href="#Laplace-Distribution"> </a>
+</h2>
+<p>If $p(\omega)$ is equal for all $\omega \in \Omega$ then we can define the measure as follows:</p>
+<p>$p(A) = \frac{|A|}{|\Omega|}$ for $A \in \mathcal{P}(\Omega)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example:-Birthday-Problem">
+<a class="anchor" href="#Example:-Birthday-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: Birthday Problem<a class="anchor-link" href="#Example:-Birthday-Problem"> </a>
+</h3>
+<p>Given a group of 23 people, what is the probability that atleast two of them have on the same day birthday ?</p>
+<p>Lets build the proability space...</p>
+<p>Denote the days as integers, so the first of january is 1, the second of january is 2...31 december is 365, then the sample space contains all elements of the form</p>
+<p>(1,1,1,...,1) if all 23 have birthday on the first of january 
+(1,1,1,...,2) all exept the last person whos birthday is on the second of january... and so on
+...
+(365, 365, 365, ..., 365).</p>
+<p>Note $|\Omega| = 365^{23}$. To see this consider the case of only two people the nwe have $(1,1), (1, 2),...,(1,365)$, then we have $(2,1), (2, 2),...,(2,365)$,... so in total we have 365 times this vector of lenght 365 so in total $365 * 365 = 365^{2}$ possible combinatioons for birthdays. With the same idea we get the result.</p>
+<p>Since $\Omega$ is countable we take the power set on the sample space as set of all events.</p>
+<p>Assuming that having a birthday is uniform distributed on these intergesr, so observing both having birthdfay on the first of january is equal likely then observbing one having birthday on 23 feb and the other on on 27 oct. We can use the laplace distribution.</p>
+<p>So in principle we could take the element in the power set which corresponds to the event of atleasdt two people having birthday on the same date, count the eleemnts in this set and divide by 365^23.</p>
+<p>We can make our life easier y looking at the complement i.e. the event that no one shares the  same birthday i.e. all elements in the vectors are distinct. Here it is easier t o count the number of possibiliteies. Indeed the first entry in the 23 long vecotr can take any value between 1 and 365 so in total 355 - 0, the second entry (person) can take any value in this range exept for the value in the first entry so in total 365 - 1 possible values, this continous until the 23'th person who has 365 - (n + 1) possible values. Aother way to think about this which I prefer is to think about all possible distnct date combinations in the event. E.g. (1,2,3,...,23) is one possibilitie. In total there are "365 over 23" possible (binomial coeficient). But each possibility appears 23! times in the event. E.g.  (1,2,3,...,23) is one way these dates could appear but it can also be the case that (23,22,...1) ... there are 23! wys of shufflig these dates. So the proability of this event is given by</p>
+<p>$\frac{23! \binom{365}{23}}{365^{23}}$</p>
+<p>so our the prob of atleast two sharing birthday is 1 minus that quantity.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Random-Variables-(r.v.s)">
+<a class="anchor" href="#Random-Variables-(r.v.s)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Random Variables (r.v.s)<a class="anchor-link" href="#Random-Variables-(r.v.s)"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Random variables are an important concept since they make calculations easier or even possible sometimes. Take for example a coin with two sides "head" and "tail" each with probability one half. Calculating the expected value is not possible i.e. has no meaning, But if we map "head" to 1 and "tail" to 0 we are back in the numbers world. A random variable is a formal way how this mapping between sample space to numbers is defined.</p>
+<p>Given some probability space $(\Omega, \mathcal{A}, P)$ a random variable is a <em>function</em> $X: \Omega \rightarrow \mathbb{R}^k$</p>
+<p>Of course we need some requirements on this mapping as an arbitraty mapping could desstroy the probability strucutre. For example if we mapped both "head" and "tail" to one. We couldnt figure out the probabilty of our random variable taking on the value 1. The key requiremtn is that the random variable is a measurable function/mapping.</p>
+<p>$X^{-1}(B)=\{ \omega \in \Omega : X(\omega) \in \mathcal{B} \} \in \mathcal{A}$ for all $B \in \mathcal{B}^k$</p>
+<p>The random variable induces a new probability space $(\mathbb{R}^k, \mathcal{B}^k, P^x)$, where $P^x$ is the probabilty measure on the random variable defined by</p>
+<p>$P^x(B) = P(X\in B) =  P(X^{-1}(B)) = P(\{ \omega \in \Omega : X(\omega) \in \mathcal{B} \})$</p>
+<p>Take as an example the coin flip, if we ask for the probabilty that the random variable is one is the same as the probabilty for the con beeing "head".</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Fundamental-Rules">
+<a class="anchor" href="#Fundamental-Rules" aria-hidden="true"><span class="octicon octicon-link"></span></a>Fundamental Rules<a class="anchor-link" href="#Fundamental-Rules"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here I collect useful calculation rules. Given a probability space $(\Omega, \mathcal{A}, P)$, two events $A, B \in \mathcal{A}$ Then we have the foloowing rules</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Union-of-two-sets">
+<a class="anchor" href="#Union-of-two-sets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Union of two sets<a class="anchor-link" href="#Union-of-two-sets"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Rule-of-total-probability">
+<a class="anchor" href="#Rule-of-total-probability" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rule of total probability<a class="anchor-link" href="#Rule-of-total-probability"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$P(A) = \sum_b P(A \cap B) = \sum_b P(A|B=b) P(B=b)$</p>
+<p>$P(A)$ is called <strong>marginal distribution</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Chain-rule">
+<a class="anchor" href="#Chain-rule" aria-hidden="true"><span class="octicon octicon-link"></span></a>Chain rule<a class="anchor-link" href="#Chain-rule"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For events $A, B, ..., Z$ it holds that</p>
+<p>$P(A,...,Z) = P(A) P(B|A) P(C|A, B) ... P(Z|A, B, ..., Y)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Product-rule">
+<a class="anchor" href="#Product-rule" aria-hidden="true"><span class="octicon octicon-link"></span></a>Product rule<a class="anchor-link" href="#Product-rule"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$P(A,B) = P(A \cap B) = P(A|B) P(B)$       (Product rule)</p>
+<p>$P(A,B)$ is called <strong>joint distribution</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Conditional-probability">
+<a class="anchor" href="#Conditional-probability" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conditional probability<a class="anchor-link" href="#Conditional-probability"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$P(A|B) = \frac{P(A,B)}{P(B)}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Bayes-rule">
+<a class="anchor" href="#Bayes-rule" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bayes rule<a class="anchor-link" href="#Bayes-rule"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$P(X=x|Y=y) = \frac{P(X=x,Y=y)}{P(Y=y)}=\frac{P(X=x)P(Y=y|X=x)}{\sum_{x'}P(X=x')P(Y=y|X=x')}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Independence">
+<a class="anchor" href="#Independence" aria-hidden="true"><span class="octicon octicon-link"></span></a>Independence<a class="anchor-link" href="#Independence"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Two events $A, B$ are independent if</p>
+<p>$P(A, B) = P(A)P(B)$</p>
+<p>and are conditional independent given some other event $C$ if</p>
+<p>$P(A,B|C) = P(A|C)P(B|C)$</p>
+<p>For example the event of raining tomorrow is not indepedent of the streets beeing wet today. But conditional on the event that it didnt rain today they are independent.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Cumulative-distribution-function-(cdf)">
+<a class="anchor" href="#Cumulative-distribution-function-(cdf)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cumulative distribution function (cdf)<a class="anchor-link" href="#Cumulative-distribution-function-(cdf)"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For a r.v. $X$ we define the cdf as</p>
+<p>$F(c) = P((-\infty, c)) = P(X \leq c)$</p>
+<p>The cdf is characterized by three properties</p>
+<ul>
+<li>F is non - decreasing $(F(a) \leq F(b))$ for $a \leq b$</li>
+<li>F is continious from the right</li>
+<li>$\lim_{x \rightarrow -\infty} F(x)=0$ and $\lim_{x \rightarrow \infty} F(x)=1$</li>
+</ul>
+<p>Further define the <em>probability density function</em> (pdf) as</p>
+<p>$F(x) = \int_{-\infty}^cf(x)dx$ i.e. $f(x)=F'(x)$ assuming the derivatve exists</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Quantiles">
+<a class="anchor" href="#Quantiles" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quantiles<a class="anchor-link" href="#Quantiles"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Given the properties of the cdf it always has an inverse $F^{-1}(y)$ for $y \in [0, 1]$. For example $F^{-1}(0.5)$ is the value for which half of the probabilty mass is on the left/right. This value is known as <em>quantile</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Joint-Probability-distributions">
+<a class="anchor" href="#Joint-Probability-distributions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Joint Probability distributions<a class="anchor-link" href="#Joint-Probability-distributions"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is possible to extend this framework to more dimensions. If we have n r.v.s $X_1,...,X_n$ we have the pdf $f(X_1,...,X_n)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Expected-Value">
+<a class="anchor" href="#Expected-Value" aria-hidden="true"><span class="octicon octicon-link"></span></a>Expected Value<a class="anchor-link" href="#Expected-Value"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Variance">
+<a class="anchor" href="#Variance" aria-hidden="true"><span class="octicon octicon-link"></span></a>Variance<a class="anchor-link" href="#Variance"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Two-important-asyptotic-results">
+<a class="anchor" href="#Two-important-asyptotic-results" aria-hidden="true"><span class="octicon octicon-link"></span></a>Two important asyptotic results<a class="anchor-link" href="#Two-important-asyptotic-results"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let $X_1,...,X_n$ be i.i.d and Consider teh sample mean $\bar{X}_n=\frac{1}{n} \sum_{i=1}^n X_i$. Note that $E(X_i)=\mu$ and $Var(X_i)=\sigma^2$ for all i. Then the two results hold</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Law-of-large-numbers">
+<a class="anchor" href="#Law-of-large-numbers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Law of large numbers<a class="anchor-link" href="#Law-of-large-numbers"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$lim_{n \rightarrow \infty} P(|\bar{X}_n - \mu| \geq c)=0$ for all $c &gt; 0$</p>
+<p>or in short notation</p>
+<p>$\bar{X}_n \overset{p}{\rightarrow} \mu$</p>
+<p>In words this means for large n the sample mean is a good estimator for the mean of a distribution.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Example-Relative-Frequency">
+<a class="anchor" href="#Example-Relative-Frequency" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example Relative Frequency<a class="anchor-link" href="#Example-Relative-Frequency"> </a>
+</h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Consider $n$ Bernoulli distributed r.v $X_i \sim Ber(p)$. Then the sum $\sum_{i=1}^nX_i \sim Bin(n,p)$. Given a realization $x_1,...,x_n$ by the law of large numbers we know that the sample mean (relative frqcueny) converges to the mean whixh is $p$ as the sample size increases.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Central-limit-theorem-(clt)">
+<a class="anchor" href="#Central-limit-theorem-(clt)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Central limit theorem (clt)<a class="anchor-link" href="#Central-limit-theorem-(clt)"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The clt says that the sample mean is asymptically normal distributed.</p>
+<p>$\sqrt{n}(\bar{X}_n -\mu) \overset{d}{\rightarrow} N(0, \sigma)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Plot-for-blog-post">
+<a class="anchor" href="#Plot-for-blog-post" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plot for blog post<a class="anchor-link" href="#Plot-for-blog-post"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#hide-output</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Empirical Distribution Function"</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"x"</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"p"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+
+    <span class="n">axes</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">"empirical_distribution_function.png"</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Sources">
+<a class="anchor" href="#Sources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sources<a class="anchor-link" href="#Sources"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>My main sources are</p>
+<ul>
+<li><a class="citation" href="#murphy2012machine">(Murphy, 2012)</a></li>
+<li><a class="citation" href="#statistik">(et al., 2012)</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="References">
+<a class="anchor" href="#References" aria-hidden="true"><span class="octicon octicon-link"></span></a>References<a class="anchor-link" href="#References"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<ol class="bibliography">
+<li><span id="murphy2012machine">Murphy, K. P. (2012). <i>Machine learning: a probabilistic perspective</i>. MIT press.</span></li>
+<li><span id="statistik">et al., G. B. (2012). <i>Statistik</i>. Oldenbourg Verlag.</span></li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="ChristopherTh/statistics-blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/statistics-blog/statistics/theory/2020/09/27/prob_theory.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/statistics-blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/statistics-blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/statistics-blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A Blog about explaining all different kinds of statistical topics.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/ChristopherTh" title="ChristopherTh"><svg class="svg-icon grey"><use xlink:href="/statistics-blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/ChristopherTh92" title="ChristopherTh92"><svg class="svg-icon grey"><use xlink:href="/statistics-blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
