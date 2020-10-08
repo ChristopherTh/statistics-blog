@@ -1,0 +1,114 @@
+<h1 id="linear-regression">“Linear Regression”</h1>
+<blockquote>
+  <p>“My reference notebook for the linear regression model.”</p>
+</blockquote>
+
+<ul>
+  <li>author: Christopher Thiemann</li>
+  <li>toc: true</li>
+  <li>branch: master</li>
+  <li>badges: true</li>
+  <li>comments: true</li>
+  <li>categories: [statistics, regression]</li>
+  <li>hide: false</li>
+  <li>search_exclude: true</li>
+</ul>
+
+<p><img src="markdown123_files/figure-markdown_github/unnamed-chunk-1-1.png" width="960" /></p>
+
+<h2 id="including-plots">Including Plots</h2>
+
+<p>You can also embed plots, for example:</p>
+
+<p><img src="markdown123_files/figure-markdown_github/pressure-1.png" alt="" /></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ISLR</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span><span class="w">
+</span><span class="n">fix</span><span class="p">(</span><span class="n">Boston</span><span class="p">)</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">Boston</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##      crim zn indus chas   nox    rm  age    dis rad tax ptratio  black lstat
+## 1 0.00632 18  2.31    0 0.538 6.575 65.2 4.0900   1 296    15.3 396.90  4.98
+## 2 0.02731  0  7.07    0 0.469 6.421 78.9 4.9671   2 242    17.8 396.90  9.14
+## 3 0.02729  0  7.07    0 0.469 7.185 61.1 4.9671   2 242    17.8 392.83  4.03
+## 4 0.03237  0  2.18    0 0.458 6.998 45.8 6.0622   3 222    18.7 394.63  2.94
+## 5 0.06905  0  2.18    0 0.458 7.147 54.2 6.0622   3 222    18.7 396.90  5.33
+## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21
+##   medv
+## 1 24.0
+## 2 21.6
+## 3 34.7
+## 4 33.4
+## 5 36.2
+## 6 28.7
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">head</span><span class="p">(</span><span class="n">Boston</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##      crim zn indus chas   nox    rm  age    dis rad tax ptratio  black lstat
+## 1 0.00632 18  2.31    0 0.538 6.575 65.2 4.0900   1 296    15.3 396.90  4.98
+## 2 0.02731  0  7.07    0 0.469 6.421 78.9 4.9671   2 242    17.8 396.90  9.14
+## 3 0.02729  0  7.07    0 0.469 7.185 61.1 4.9671   2 242    17.8 392.83  4.03
+## 4 0.03237  0  2.18    0 0.458 6.998 45.8 6.0622   3 222    18.7 394.63  2.94
+## 5 0.06905  0  2.18    0 0.458 7.147 54.2 6.0622   3 222    18.7 396.90  5.33
+## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21
+##   medv
+## 1 24.0
+## 2 21.6
+## 3 34.7
+## 4 33.4
+## 5 36.2
+## 6 28.7
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lm.fit</span><span class="o">=</span><span class="n">lm</span><span class="p">(</span><span class="n">medv</span><span class="err">∼</span><span class="n">lstat</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Boston</span><span class="p">)</span><span class="w">
+
+</span><span class="n">summary</span><span class="p">(</span><span class="n">lm.fit</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## 
+## Call:
+## lm(formula = medv ~ lstat, data = Boston)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -15.168  -3.990  -1.318   2.034  24.500 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 34.55384    0.56263   61.41   &lt;2e-16 ***
+## lstat       -0.95005    0.03873  -24.53   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 6.216 on 504 degrees of freedom
+## Multiple R-squared:  0.5441, Adjusted R-squared:  0.5432 
+## F-statistic: 601.6 on 1 and 504 DF,  p-value: &lt; 2.2e-16
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">broom</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lm.fit</span><span class="o">=</span><span class="n">lm</span><span class="p">(</span><span class="n">medv</span><span class="err">∼</span><span class="n">lstat</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Boston</span><span class="p">)</span><span class="w">
+
+</span><span class="n">tidy</span><span class="p">(</span><span class="n">lm.fit</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## # A tibble: 2 x 5
+##   term        estimate std.error statistic   p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)   34.6      0.563       61.4 3.74e-236
+## 2 lstat         -0.950    0.0387     -24.5 5.08e- 88
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fix</span><span class="p">(</span><span class="n">Boston</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">Boston</span><span class="o">$</span><span class="n">lstat</span><span class="w"> </span><span class="p">,</span><span class="n">Boston</span><span class="o">$</span><span class="n">medv</span><span class="p">)</span><span class="w">
+</span><span class="n">abline</span><span class="p">(</span><span class="n">lm.fit</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="markdown123_files/figure-markdown_github/unnamed-chunk-7-1.png" alt="" /></p>
+
+<p>Note that the <code class="highlighter-rouge">echo = FALSE</code> parameter was added to the code chunk to
+prevent printing of the R code that generated the plot.</p>
