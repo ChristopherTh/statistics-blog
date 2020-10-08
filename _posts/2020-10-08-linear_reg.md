@@ -10,14 +10,14 @@
 - hide: false
 - search_exclude: true
 
-<img src="markdown123_files\unnamed-chunk-1-1.png" width="960" />
+<img src="markdown123_files/figure-markdown_github/unnamed-chunk-1-1.png" width="960" />
 
 Including Plots
 ---------------
 
 You can also embed plots, for example:
 
-![](markdown123_files\pressure-1.png)
+![](markdown123_files/figure-markdown_github/pressure-1.png)
 
 ``` r
 library(ISLR)
@@ -107,7 +107,7 @@ plot(Boston$lstat ,Boston$medv)
 abline(lm.fit)
 ```
 
-![](markdown123_files\unnamed-chunk-7-1.png)
+![](markdown123_files/unnamed-chunk-7-1.png)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to
 prevent printing of the R code that generated the plot.
