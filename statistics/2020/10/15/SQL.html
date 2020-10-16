@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>SQL | Statistics-Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="SQL" />
+<meta name="author" content="Christopher Thiemann" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Subheader" />
+<meta property="og:description" content="Subheader" />
+<link rel="canonical" href="https://christopherth.github.io/statistics-blog/statistics/2020/10/15/SQL.html" />
+<meta property="og:url" content="https://christopherth.github.io/statistics-blog/statistics/2020/10/15/SQL.html" />
+<meta property="og:site_name" content="Statistics-Blog" />
+<meta property="og:image" content="https://christopherth.github.io/statistics-blog/images/poisson.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-15T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"SQL","dateModified":"2020-10-15T00:00:00-05:00","datePublished":"2020-10-15T00:00:00-05:00","author":{"@type":"Person","name":"Christopher Thiemann"},"image":"https://christopherth.github.io/statistics-blog/images/poisson.png","description":"Subheader","mainEntityOfPage":{"@type":"WebPage","@id":"https://christopherth.github.io/statistics-blog/statistics/2020/10/15/SQL.html"},"@type":"BlogPosting","url":"https://christopherth.github.io/statistics-blog/statistics/2020/10/15/SQL.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/statistics-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://christopherth.github.io/statistics-blog/feed.xml" title="Statistics-Blog" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-175674558-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+<link rel="shortcut icon" type="image/x-icon" href="/statistics-blog/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>SQL | Statistics-Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="SQL" />
+<meta name="author" content="Christopher Thiemann" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Subheader" />
+<meta property="og:description" content="Subheader" />
+<link rel="canonical" href="https://christopherth.github.io/statistics-blog/statistics/2020/10/15/SQL.html" />
+<meta property="og:url" content="https://christopherth.github.io/statistics-blog/statistics/2020/10/15/SQL.html" />
+<meta property="og:site_name" content="Statistics-Blog" />
+<meta property="og:image" content="https://christopherth.github.io/statistics-blog/images/poisson.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-15T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"SQL","dateModified":"2020-10-15T00:00:00-05:00","datePublished":"2020-10-15T00:00:00-05:00","author":{"@type":"Person","name":"Christopher Thiemann"},"image":"https://christopherth.github.io/statistics-blog/images/poisson.png","description":"Subheader","mainEntityOfPage":{"@type":"WebPage","@id":"https://christopherth.github.io/statistics-blog/statistics/2020/10/15/SQL.html"},"@type":"BlogPosting","url":"https://christopherth.github.io/statistics-blog/statistics/2020/10/15/SQL.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://christopherth.github.io/statistics-blog/feed.xml" title="Statistics-Blog" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-175674558-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/statistics-blog/">Statistics-Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/statistics-blog/about/">About Me</a><a class="page-link" href="/statistics-blog/search/">Search</a><a class="page-link" href="/statistics-blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">SQL</h1><p class="page-description">Subheader</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-15T00:00:00-05:00" itemprop="datePublished">
+        Oct 15, 2020
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Christopher Thiemann</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/statistics-blog/categories/#statistics">statistics</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/ChristopherTh/statistics-blog/tree/master/_notebooks/2020-10-15-SQL.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/statistics-blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/ChristopherTh/statistics-blog/blob/master/_notebooks/2020-10-15-SQL.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/statistics-blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Helper-Functions">Helper Functions </a></li>
+<li class="toc-entry toc-h2"><a href="#Plot-for-the-Blog-Post">Plot for the Blog Post </a></li>
+<li class="toc-entry toc-h2"><a href="#Sources">Sources </a></li>
+<li class="toc-entry toc-h2"><a href="#References">References </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-10-15-SQL.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>curl https://cdn.sqlitetutorial.net/wp-content/uploads/2018/03/chinook.zip -o database.zip
+<span class="o">!</span>unzip database.zip
+<span class="o">!</span>ls
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  298k  100  298k    0     0  1394k      0 --:--:-- --:--:-- --:--:-- 1394k
+Archive:  database.zip
+replace chinook.db? [y]es, [n]o, [A]ll, [N]one, [r]ename: y
+  inflating: chinook.db              
+chinook.db  database.zip  data.db  sample_data	test.zip
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">"chinook.db"</span><span class="p">)</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">con</span><span class="p">:</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT name FROM sqlite_master WHERE type='table';"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">table_name</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="n">table_name</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="sa">f</span><span class="s2">"select * from </span><span class="si">{</span><span class="n">table_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">con</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n\n\n\n\n\n</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>albums
+   AlbumId                                  Title  ArtistId
+0        1  For Those About To Rock We Salute You         1
+1        2                      Balls to the Wall         2
+2        3                      Restless and Wild         2
+3        4                      Let There Be Rock         1
+4        5                               Big Ones         3 
+
+
+
+
+
+
+sqlite_sequence
+          name   seq
+0       genres    25
+1  media_types     5
+2      artists   275
+3       albums   347
+4       tracks  3503 
+
+
+
+
+
+
+artists
+   ArtistId               Name
+0         1              AC/DC
+1         2             Accept
+2         3          Aerosmith
+3         4  Alanis Morissette
+4         5    Alice In Chains 
+
+
+
+
+
+
+customers
+   CustomerId  FirstName     LastName  \
+0           1       Luís    Gonçalves   
+1           2     Leonie       Köhler   
+2           3   François     Tremblay   
+3           4      Bjørn       Hansen   
+4           5  František  Wichterlová   
+
+                                            Company  \
+0  Embraer - Empresa Brasileira de Aeronáutica S.A.   
+1                                              None   
+2                                              None   
+3                                              None   
+4                                  JetBrains s.r.o.   
+
+                           Address                 City State         Country  \
+0  Av. Brigadeiro Faria Lima, 2170  São José dos Campos    SP          Brazil   
+1          Theodor-Heuss-Straße 34            Stuttgart  None         Germany   
+2                1498 rue Bélanger             Montréal    QC          Canada   
+3                 Ullevålsveien 14                 Oslo  None          Norway   
+4                    Klanova 9/506               Prague  None  Czech Republic   
+
+  PostalCode               Phone                 Fax  \
+0  12227-000  +55 (12) 3923-5555  +55 (12) 3923-5566   
+1      70174    +49 0711 2842222                None   
+2    H2G 1A7   +1 (514) 721-4711                None   
+3       0171     +47 22 44 22 22                None   
+4      14700    +420 2 4172 5555    +420 2 4172 5555   
+
+                      Email  SupportRepId  
+0      luisg@embraer.com.br             3  
+1     leonekohler@surfeu.de             5  
+2       ftremblay@gmail.com             3  
+3     bjorn.hansen@yahoo.no             4  
+4  frantisekw@jetbrains.com             4   
+
+
+
+
+
+
+employees
+   EmployeeId LastName FirstName                Title  ReportsTo  \
+0           1    Adams    Andrew      General Manager        NaN   
+1           2  Edwards     Nancy        Sales Manager        1.0   
+2           3  Peacock      Jane  Sales Support Agent        2.0   
+3           4     Park  Margaret  Sales Support Agent        2.0   
+4           5  Johnson     Steve  Sales Support Agent        2.0   
+
+             BirthDate             HireDate              Address      City  \
+0  1962-02-18 00:00:00  2002-08-14 00:00:00  11120 Jasper Ave NW  Edmonton   
+1  1958-12-08 00:00:00  2002-05-01 00:00:00         825 8 Ave SW   Calgary   
+2  1973-08-29 00:00:00  2002-04-01 00:00:00        1111 6 Ave SW   Calgary   
+3  1947-09-19 00:00:00  2003-05-03 00:00:00     683 10 Street SW   Calgary   
+4  1965-03-03 00:00:00  2003-10-17 00:00:00         7727B 41 Ave   Calgary   
+
+  State Country PostalCode              Phone                Fax  \
+0    AB  Canada    T5K 2N1  +1 (780) 428-9482  +1 (780) 428-3457   
+1    AB  Canada    T2P 2T3  +1 (403) 262-3443  +1 (403) 262-3322   
+2    AB  Canada    T2P 5M5  +1 (403) 262-3443  +1 (403) 262-6712   
+3    AB  Canada    T2P 5G3  +1 (403) 263-4423  +1 (403) 263-4289   
+4    AB  Canada    T3B 1Y7   1 (780) 836-9987   1 (780) 836-9543   
+
+                      Email  
+0    andrew@chinookcorp.com  
+1     nancy@chinookcorp.com  
+2      jane@chinookcorp.com  
+3  margaret@chinookcorp.com  
+4     steve@chinookcorp.com   
+
+
+
+
+
+
+genres
+   GenreId                Name
+0        1                Rock
+1        2                Jazz
+2        3               Metal
+3        4  Alternative &amp; Punk
+4        5       Rock And Roll 
+
+
+
+
+
+
+invoices
+   InvoiceId  CustomerId          InvoiceDate           BillingAddress  \
+0          1           2  2009-01-01 00:00:00  Theodor-Heuss-Straße 34   
+1          2           4  2009-01-02 00:00:00         Ullevålsveien 14   
+2          3           8  2009-01-03 00:00:00          Grétrystraat 63   
+3          4          14  2009-01-06 00:00:00           8210 111 ST NW   
+4          5          23  2009-01-11 00:00:00          69 Salem Street   
+
+  BillingCity BillingState BillingCountry BillingPostalCode  Total  
+0   Stuttgart         None        Germany             70174   1.98  
+1        Oslo         None         Norway              0171   3.96  
+2    Brussels         None        Belgium              1000   5.94  
+3    Edmonton           AB         Canada           T6G 2C7   8.91  
+4      Boston           MA            USA              2113  13.86   
+
+
+
+
+
+
+invoice_items
+   InvoiceLineId  InvoiceId  TrackId  UnitPrice  Quantity
+0              1          1        2       0.99         1
+1              2          1        4       0.99         1
+2              3          2        6       0.99         1
+3              4          2        8       0.99         1
+4              5          2       10       0.99         1 
+
+
+
+
+
+
+media_types
+   MediaTypeId                         Name
+0            1              MPEG audio file
+1            2     Protected AAC audio file
+2            3  Protected MPEG-4 video file
+3            4     Purchased AAC audio file
+4            5               AAC audio file 
+
+
+
+
+
+
+playlists
+   PlaylistId        Name
+0           1       Music
+1           2      Movies
+2           3    TV Shows
+3           4  Audiobooks
+4           5  90’s Music 
+
+
+
+
+
+
+playlist_track
+   PlaylistId  TrackId
+0           1     3402
+1           1     3389
+2           1     3390
+3           1     3391
+4           1     3392 
+
+
+
+
+
+
+tracks
+   TrackId                                     Name  AlbumId  MediaTypeId  \
+0        1  For Those About To Rock (We Salute You)        1            1   
+1        2                        Balls to the Wall        2            2   
+2        3                          Fast As a Shark        3            2   
+3        4                        Restless and Wild        3            2   
+4        5                     Princess of the Dawn        3            2   
+
+   GenreId                                           Composer  Milliseconds  \
+0        1          Angus Young, Malcolm Young, Brian Johnson        343719   
+1        1                                               None        342562   
+2        1  F. Baltes, S. Kaufman, U. Dirkscneider &amp; W. Ho...        230619   
+3        1  F. Baltes, R.A. Smith-Diesel, S. Kaufman, U. D...        252051   
+4        1                         Deaffy &amp; R.A. Smith-Diesel        375418   
+
+      Bytes  UnitPrice  
+0  11170334       0.99  
+1   5510424       0.99  
+2   3990994       0.99  
+3   4331779       0.99  
+4   6290521       0.99   
+
+
+
+
+
+
+sqlite_stat1
+              tbl                                idx        stat
+0          tracks               IFK_TrackMediaTypeId    3503 701
+1          tracks                   IFK_TrackGenreId    3503 141
+2          tracks                   IFK_TrackAlbumId     3503 11
+3  playlist_track           IFK_PlaylistTrackTrackId      8715 3
+4  playlist_track  sqlite_autoindex_playlist_track_1  8715 623 1 
+
+
+
+
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">"select * from artists"</span><span class="p">,</span> <span class="n">con</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">'ArtistId'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+    </tr>
+    <tr>
+      <th>ArtistId</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>AC/DC</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Accept</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Aerosmith</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Alanis Morissette</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Alice In Chains</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>271</th>
+      <td>Mela Tenenbaum, Pro Musica Prague &amp; Richard Kapp</td>
+    </tr>
+    <tr>
+      <th>272</th>
+      <td>Emerson String Quartet</td>
+    </tr>
+    <tr>
+      <th>273</th>
+      <td>C. Monteverdi, Nigel Rogers - Chiaroscuro; Lon...</td>
+    </tr>
+    <tr>
+      <th>274</th>
+      <td>Nash Ensemble</td>
+    </tr>
+    <tr>
+      <th>275</th>
+      <td>Philip Glass Ensemble</td>
+    </tr>
+  </tbody>
+</table>
+<p>275 rows × 1 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">"select COUNT(AlbumId) as a from artists left join albums on artists.ArtistId = albums.ArtistId group by ArtistId"</span><span class="p">,</span> <span class="n">con</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">OperationalError</span>                          Traceback (most recent call last)
+<span class="ansi-green-fg">/usr/local/lib/python3.6/dist-packages/pandas/io/sql.py</span> in <span class="ansi-cyan-fg">execute</span><span class="ansi-blue-fg">(self, *args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1680</span>         <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">-&gt; 1681</span><span class="ansi-red-fg">             </span>cur<span class="ansi-blue-fg">.</span>execute<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1682</span>             <span class="ansi-green-fg">return</span> cur
+
+<span class="ansi-red-fg">OperationalError</span>: ambiguous column name: ArtistId
+
+The above exception was the direct cause of the following exception:
+
+<span class="ansi-red-fg">DatabaseError</span>                             Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-93-a443052af76c&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>pd<span class="ansi-blue-fg">.</span>read_sql_query<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"select COUNT(AlbumId) as a from artists left join albums on artists.ArtistId = albums.ArtistId group by ArtistId"</span><span class="ansi-blue-fg">,</span> con<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.6/dist-packages/pandas/io/sql.py</span> in <span class="ansi-cyan-fg">read_sql_query</span><span class="ansi-blue-fg">(sql, con, index_col, coerce_float, params, parse_dates, chunksize)</span>
+<span class="ansi-green-intense-fg ansi-bold">    381</span>         coerce_float<span class="ansi-blue-fg">=</span>coerce_float<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    382</span>         parse_dates<span class="ansi-blue-fg">=</span>parse_dates<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-fg">--&gt; 383</span><span class="ansi-red-fg">         </span>chunksize<span class="ansi-blue-fg">=</span>chunksize<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    384</span>     )
+<span class="ansi-green-intense-fg ansi-bold">    385</span> 
+
+<span class="ansi-green-fg">/usr/local/lib/python3.6/dist-packages/pandas/io/sql.py</span> in <span class="ansi-cyan-fg">read_query</span><span class="ansi-blue-fg">(self, sql, index_col, coerce_float, params, parse_dates, chunksize)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1725</span> 
+<span class="ansi-green-intense-fg ansi-bold">   1726</span>         args <span class="ansi-blue-fg">=</span> _convert_params<span class="ansi-blue-fg">(</span>sql<span class="ansi-blue-fg">,</span> params<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">-&gt; 1727</span><span class="ansi-red-fg">         </span>cursor <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>execute<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1728</span>         columns <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>col_desc<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span> <span class="ansi-green-fg">for</span> col_desc <span class="ansi-green-fg">in</span> cursor<span class="ansi-blue-fg">.</span>description<span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">   1729</span> 
+
+<span class="ansi-green-fg">/usr/local/lib/python3.6/dist-packages/pandas/io/sql.py</span> in <span class="ansi-cyan-fg">execute</span><span class="ansi-blue-fg">(self, *args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1691</span> 
+<span class="ansi-green-intense-fg ansi-bold">   1692</span>             ex <span class="ansi-blue-fg">=</span> DatabaseError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">f"Execution failed on sql '{args[0]}': {exc}"</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">-&gt; 1693</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">raise</span> ex <span class="ansi-green-fg">from</span> exc
+<span class="ansi-green-intense-fg ansi-bold">   1694</span> 
+<span class="ansi-green-intense-fg ansi-bold">   1695</span>     <span class="ansi-blue-fg">@</span>staticmethod
+
+<span class="ansi-red-fg">DatabaseError</span>: Execution failed on sql 'select COUNT(AlbumId) as a from artists left join albums on artists.ArtistId = albums.ArtistId group by ArtistId': ambiguous column name: ArtistId</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="https://cdn.sqlitetutorial.net/wp-content/uploads/2018/03/sqlite-sample-database-diagram-color.pdf" alt=""></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Helper-Functions">
+<a class="anchor" href="#Helper-Functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Helper Functions<a class="anchor-link" href="#Helper-Functions"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Plot-for-the-Blog-Post">
+<a class="anchor" href="#Plot-for-the-Blog-Post" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plot for the Blog Post<a class="anchor-link" href="#Plot-for-the-Blog-Post"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Sources">
+<a class="anchor" href="#Sources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sources<a class="anchor-link" href="#Sources"> </a>
+</h2>
+<ul>
+<li>Hello This is a markdown page (missing reference)</li>
+<li><a href="http://openbook.rheinwerk-verlag.de/python/33_003.html#u33.3.1">http://openbook.rheinwerk-verlag.de/python/33_003.html#u33.3.1</a></li>
+<li><a href="https://www.sqlitetutorial.net/sqlite-left-join/">https://www.sqlitetutorial.net/sqlite-left-join/</a></li>
+<li><a href="https://realpython.com/python-sqlite-sqlalchemy/">https://realpython.com/python-sqlite-sqlalchemy/</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="References">
+<a class="anchor" href="#References" aria-hidden="true"><span class="octicon octicon-link"></span></a>References<a class="anchor-link" href="#References"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<ol class="bibliography"></ol>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="ChristopherTh/statistics-blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/statistics-blog/statistics/2020/10/15/SQL.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/statistics-blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/statistics-blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/statistics-blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A Blog about explaining all different kinds of statistical topics.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/ChristopherTh" title="ChristopherTh"><svg class="svg-icon grey"><use xlink:href="/statistics-blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/ChristopherTh92" title="ChristopherTh92"><svg class="svg-icon grey"><use xlink:href="/statistics-blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
