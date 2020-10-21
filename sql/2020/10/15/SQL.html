@@ -125,7 +125,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      6 min read
+      9 min read
     
 </span></p>
 
@@ -159,6 +159,8 @@ window.onload = wrap_img;
 
   <div class="post-content e-content" itemprop="articleBody">
     <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Basic-Queries">Basic Queries </a></li>
+<li class="toc-entry toc-h2"><a href="#Aggregate-Functions">Aggregate Functions </a></li>
 <li class="toc-entry toc-h2"><a href="#Helper-Functions">Helper Functions </a></li>
 <li class="toc-entry toc-h2"><a href="#Plot-for-the-Blog-Post">Plot for the Blog Post </a></li>
 <li class="toc-entry toc-h2"><a href="#Sources">Sources </a></li>
@@ -203,11 +205,10 @@ window.onload = wrap_img;
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-100  298k  100  298k    0     0  1394k      0 --:--:-- --:--:-- --:--:-- 1394k
+100  298k  100  298k    0     0   972k      0 --:--:-- --:--:-- --:--:--  972k
 Archive:  database.zip
-replace chinook.db? [y]es, [n]o, [A]ll, [N]one, [r]ename: y
   inflating: chinook.db              
-chinook.db  database.zip  data.db  sample_data	test.zip
+chinook.db  database.zip  sample_data
 </pre>
 </div>
 </div>
@@ -494,6 +495,623 @@ sqlite_stat1
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Basic-Queries">
+<a class="anchor" href="#Basic-Queries" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Queries<a class="anchor-link" href="#Basic-Queries"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">"select * from employees limit 10"</span><span class="p">,</span> <span class="n">con</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>EmployeeId</th>
+      <th>LastName</th>
+      <th>FirstName</th>
+      <th>Title</th>
+      <th>ReportsTo</th>
+      <th>BirthDate</th>
+      <th>HireDate</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Country</th>
+      <th>PostalCode</th>
+      <th>Phone</th>
+      <th>Fax</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Adams</td>
+      <td>Andrew</td>
+      <td>General Manager</td>
+      <td>NaN</td>
+      <td>1962-02-18 00:00:00</td>
+      <td>2002-08-14 00:00:00</td>
+      <td>11120 Jasper Ave NW</td>
+      <td>Edmonton</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T5K 2N1</td>
+      <td>+1 (780) 428-9482</td>
+      <td>+1 (780) 428-3457</td>
+      <td>andrew@chinookcorp.com</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Edwards</td>
+      <td>Nancy</td>
+      <td>Sales Manager</td>
+      <td>1.0</td>
+      <td>1958-12-08 00:00:00</td>
+      <td>2002-05-01 00:00:00</td>
+      <td>825 8 Ave SW</td>
+      <td>Calgary</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T2P 2T3</td>
+      <td>+1 (403) 262-3443</td>
+      <td>+1 (403) 262-3322</td>
+      <td>nancy@chinookcorp.com</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Peacock</td>
+      <td>Jane</td>
+      <td>Sales Support Agent</td>
+      <td>2.0</td>
+      <td>1973-08-29 00:00:00</td>
+      <td>2002-04-01 00:00:00</td>
+      <td>1111 6 Ave SW</td>
+      <td>Calgary</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T2P 5M5</td>
+      <td>+1 (403) 262-3443</td>
+      <td>+1 (403) 262-6712</td>
+      <td>jane@chinookcorp.com</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Park</td>
+      <td>Margaret</td>
+      <td>Sales Support Agent</td>
+      <td>2.0</td>
+      <td>1947-09-19 00:00:00</td>
+      <td>2003-05-03 00:00:00</td>
+      <td>683 10 Street SW</td>
+      <td>Calgary</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T2P 5G3</td>
+      <td>+1 (403) 263-4423</td>
+      <td>+1 (403) 263-4289</td>
+      <td>margaret@chinookcorp.com</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Johnson</td>
+      <td>Steve</td>
+      <td>Sales Support Agent</td>
+      <td>2.0</td>
+      <td>1965-03-03 00:00:00</td>
+      <td>2003-10-17 00:00:00</td>
+      <td>7727B 41 Ave</td>
+      <td>Calgary</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T3B 1Y7</td>
+      <td>1 (780) 836-9987</td>
+      <td>1 (780) 836-9543</td>
+      <td>steve@chinookcorp.com</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>Mitchell</td>
+      <td>Michael</td>
+      <td>IT Manager</td>
+      <td>1.0</td>
+      <td>1973-07-01 00:00:00</td>
+      <td>2003-10-17 00:00:00</td>
+      <td>5827 Bowness Road NW</td>
+      <td>Calgary</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T3B 0C5</td>
+      <td>+1 (403) 246-9887</td>
+      <td>+1 (403) 246-9899</td>
+      <td>michael@chinookcorp.com</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>King</td>
+      <td>Robert</td>
+      <td>IT Staff</td>
+      <td>6.0</td>
+      <td>1970-05-29 00:00:00</td>
+      <td>2004-01-02 00:00:00</td>
+      <td>590 Columbia Boulevard West</td>
+      <td>Lethbridge</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T1K 5N8</td>
+      <td>+1 (403) 456-9986</td>
+      <td>+1 (403) 456-8485</td>
+      <td>robert@chinookcorp.com</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>Callahan</td>
+      <td>Laura</td>
+      <td>IT Staff</td>
+      <td>6.0</td>
+      <td>1968-01-09 00:00:00</td>
+      <td>2004-03-04 00:00:00</td>
+      <td>923 7 ST NW</td>
+      <td>Lethbridge</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T1H 1Y8</td>
+      <td>+1 (403) 467-3351</td>
+      <td>+1 (403) 467-8772</td>
+      <td>laura@chinookcorp.com</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">select *, CASE</span>
+<span class="s2">		WHEN EmployeeId &gt; 1 THEN</span>
+<span class="s2">			'short'</span>
+<span class="s2">		WHEN EmployeeId &gt; 5 THEN 'medium'</span>
+<span class="s2">		ELSE</span>
+<span class="s2">			'long'</span>
+<span class="s2">		END category</span>
+<span class="s2">         from employees limit 10</span>
+<span class="s2">"""</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">con</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>EmployeeId</th>
+      <th>LastName</th>
+      <th>FirstName</th>
+      <th>Title</th>
+      <th>ReportsTo</th>
+      <th>BirthDate</th>
+      <th>HireDate</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Country</th>
+      <th>PostalCode</th>
+      <th>Phone</th>
+      <th>Fax</th>
+      <th>Email</th>
+      <th>category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Adams</td>
+      <td>Andrew</td>
+      <td>General Manager</td>
+      <td>NaN</td>
+      <td>1962-02-18 00:00:00</td>
+      <td>2002-08-14 00:00:00</td>
+      <td>11120 Jasper Ave NW</td>
+      <td>Edmonton</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T5K 2N1</td>
+      <td>+1 (780) 428-9482</td>
+      <td>+1 (780) 428-3457</td>
+      <td>andrew@chinookcorp.com</td>
+      <td>long</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Edwards</td>
+      <td>Nancy</td>
+      <td>Sales Manager</td>
+      <td>1.0</td>
+      <td>1958-12-08 00:00:00</td>
+      <td>2002-05-01 00:00:00</td>
+      <td>825 8 Ave SW</td>
+      <td>Calgary</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T2P 2T3</td>
+      <td>+1 (403) 262-3443</td>
+      <td>+1 (403) 262-3322</td>
+      <td>nancy@chinookcorp.com</td>
+      <td>short</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Peacock</td>
+      <td>Jane</td>
+      <td>Sales Support Agent</td>
+      <td>2.0</td>
+      <td>1973-08-29 00:00:00</td>
+      <td>2002-04-01 00:00:00</td>
+      <td>1111 6 Ave SW</td>
+      <td>Calgary</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T2P 5M5</td>
+      <td>+1 (403) 262-3443</td>
+      <td>+1 (403) 262-6712</td>
+      <td>jane@chinookcorp.com</td>
+      <td>short</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Park</td>
+      <td>Margaret</td>
+      <td>Sales Support Agent</td>
+      <td>2.0</td>
+      <td>1947-09-19 00:00:00</td>
+      <td>2003-05-03 00:00:00</td>
+      <td>683 10 Street SW</td>
+      <td>Calgary</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T2P 5G3</td>
+      <td>+1 (403) 263-4423</td>
+      <td>+1 (403) 263-4289</td>
+      <td>margaret@chinookcorp.com</td>
+      <td>short</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Johnson</td>
+      <td>Steve</td>
+      <td>Sales Support Agent</td>
+      <td>2.0</td>
+      <td>1965-03-03 00:00:00</td>
+      <td>2003-10-17 00:00:00</td>
+      <td>7727B 41 Ave</td>
+      <td>Calgary</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T3B 1Y7</td>
+      <td>1 (780) 836-9987</td>
+      <td>1 (780) 836-9543</td>
+      <td>steve@chinookcorp.com</td>
+      <td>short</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>Mitchell</td>
+      <td>Michael</td>
+      <td>IT Manager</td>
+      <td>1.0</td>
+      <td>1973-07-01 00:00:00</td>
+      <td>2003-10-17 00:00:00</td>
+      <td>5827 Bowness Road NW</td>
+      <td>Calgary</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T3B 0C5</td>
+      <td>+1 (403) 246-9887</td>
+      <td>+1 (403) 246-9899</td>
+      <td>michael@chinookcorp.com</td>
+      <td>short</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>King</td>
+      <td>Robert</td>
+      <td>IT Staff</td>
+      <td>6.0</td>
+      <td>1970-05-29 00:00:00</td>
+      <td>2004-01-02 00:00:00</td>
+      <td>590 Columbia Boulevard West</td>
+      <td>Lethbridge</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T1K 5N8</td>
+      <td>+1 (403) 456-9986</td>
+      <td>+1 (403) 456-8485</td>
+      <td>robert@chinookcorp.com</td>
+      <td>short</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>Callahan</td>
+      <td>Laura</td>
+      <td>IT Staff</td>
+      <td>6.0</td>
+      <td>1968-01-09 00:00:00</td>
+      <td>2004-03-04 00:00:00</td>
+      <td>923 7 ST NW</td>
+      <td>Lethbridge</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T1H 1Y8</td>
+      <td>+1 (403) 467-3351</td>
+      <td>+1 (403) 467-8772</td>
+      <td>laura@chinookcorp.com</td>
+      <td>short</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">"select * from employees limit 10 offset 3"</span><span class="p">,</span> <span class="n">con</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>EmployeeId</th>
+      <th>LastName</th>
+      <th>FirstName</th>
+      <th>Title</th>
+      <th>ReportsTo</th>
+      <th>BirthDate</th>
+      <th>HireDate</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Country</th>
+      <th>PostalCode</th>
+      <th>Phone</th>
+      <th>Fax</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4</td>
+      <td>Park</td>
+      <td>Margaret</td>
+      <td>Sales Support Agent</td>
+      <td>2</td>
+      <td>1947-09-19 00:00:00</td>
+      <td>2003-05-03 00:00:00</td>
+      <td>683 10 Street SW</td>
+      <td>Calgary</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T2P 5G3</td>
+      <td>+1 (403) 263-4423</td>
+      <td>+1 (403) 263-4289</td>
+      <td>margaret@chinookcorp.com</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5</td>
+      <td>Johnson</td>
+      <td>Steve</td>
+      <td>Sales Support Agent</td>
+      <td>2</td>
+      <td>1965-03-03 00:00:00</td>
+      <td>2003-10-17 00:00:00</td>
+      <td>7727B 41 Ave</td>
+      <td>Calgary</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T3B 1Y7</td>
+      <td>1 (780) 836-9987</td>
+      <td>1 (780) 836-9543</td>
+      <td>steve@chinookcorp.com</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6</td>
+      <td>Mitchell</td>
+      <td>Michael</td>
+      <td>IT Manager</td>
+      <td>1</td>
+      <td>1973-07-01 00:00:00</td>
+      <td>2003-10-17 00:00:00</td>
+      <td>5827 Bowness Road NW</td>
+      <td>Calgary</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T3B 0C5</td>
+      <td>+1 (403) 246-9887</td>
+      <td>+1 (403) 246-9899</td>
+      <td>michael@chinookcorp.com</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7</td>
+      <td>King</td>
+      <td>Robert</td>
+      <td>IT Staff</td>
+      <td>6</td>
+      <td>1970-05-29 00:00:00</td>
+      <td>2004-01-02 00:00:00</td>
+      <td>590 Columbia Boulevard West</td>
+      <td>Lethbridge</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T1K 5N8</td>
+      <td>+1 (403) 456-9986</td>
+      <td>+1 (403) 456-8485</td>
+      <td>robert@chinookcorp.com</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>8</td>
+      <td>Callahan</td>
+      <td>Laura</td>
+      <td>IT Staff</td>
+      <td>6</td>
+      <td>1968-01-09 00:00:00</td>
+      <td>2004-03-04 00:00:00</td>
+      <td>923 7 ST NW</td>
+      <td>Lethbridge</td>
+      <td>AB</td>
+      <td>Canada</td>
+      <td>T1H 1Y8</td>
+      <td>+1 (403) 467-3351</td>
+      <td>+1 (403) 467-8772</td>
+      <td>laura@chinookcorp.com</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -606,7 +1224,7 @@ sqlite_stat1
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">"select COUNT(AlbumId) as a from artists left join albums on artists.ArtistId = albums.ArtistId group by ArtistId"</span><span class="p">,</span> <span class="n">con</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">"select * from artists inner join albums on artists.ArtistId = albums.ArtistId"</span><span class="p">,</span> <span class="n">con</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -618,46 +1236,128 @@ sqlite_stat1
 
 <div class="output_area">
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">OperationalError</span>                          Traceback (most recent call last)
-<span class="ansi-green-fg">/usr/local/lib/python3.6/dist-packages/pandas/io/sql.py</span> in <span class="ansi-cyan-fg">execute</span><span class="ansi-blue-fg">(self, *args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1680</span>         <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 1681</span><span class="ansi-red-fg">             </span>cur<span class="ansi-blue-fg">.</span>execute<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1682</span>             <span class="ansi-green-fg">return</span> cur
 
-<span class="ansi-red-fg">OperationalError</span>: ambiguous column name: ArtistId
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-The above exception was the direct cause of the following exception:
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="ansi-red-fg">DatabaseError</span>                             Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-93-a443052af76c&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>pd<span class="ansi-blue-fg">.</span>read_sql_query<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"select COUNT(AlbumId) as a from artists left join albums on artists.ArtistId = albums.ArtistId group by ArtistId"</span><span class="ansi-blue-fg">,</span> con<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">/usr/local/lib/python3.6/dist-packages/pandas/io/sql.py</span> in <span class="ansi-cyan-fg">read_sql_query</span><span class="ansi-blue-fg">(sql, con, index_col, coerce_float, params, parse_dates, chunksize)</span>
-<span class="ansi-green-intense-fg ansi-bold">    381</span>         coerce_float<span class="ansi-blue-fg">=</span>coerce_float<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    382</span>         parse_dates<span class="ansi-blue-fg">=</span>parse_dates<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">--&gt; 383</span><span class="ansi-red-fg">         </span>chunksize<span class="ansi-blue-fg">=</span>chunksize<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    384</span>     )
-<span class="ansi-green-intense-fg ansi-bold">    385</span> 
-
-<span class="ansi-green-fg">/usr/local/lib/python3.6/dist-packages/pandas/io/sql.py</span> in <span class="ansi-cyan-fg">read_query</span><span class="ansi-blue-fg">(self, sql, index_col, coerce_float, params, parse_dates, chunksize)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1725</span> 
-<span class="ansi-green-intense-fg ansi-bold">   1726</span>         args <span class="ansi-blue-fg">=</span> _convert_params<span class="ansi-blue-fg">(</span>sql<span class="ansi-blue-fg">,</span> params<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">-&gt; 1727</span><span class="ansi-red-fg">         </span>cursor <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>execute<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1728</span>         columns <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>col_desc<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span> <span class="ansi-green-fg">for</span> col_desc <span class="ansi-green-fg">in</span> cursor<span class="ansi-blue-fg">.</span>description<span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">   1729</span> 
-
-<span class="ansi-green-fg">/usr/local/lib/python3.6/dist-packages/pandas/io/sql.py</span> in <span class="ansi-cyan-fg">execute</span><span class="ansi-blue-fg">(self, *args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1691</span> 
-<span class="ansi-green-intense-fg ansi-bold">   1692</span>             ex <span class="ansi-blue-fg">=</span> DatabaseError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">f"Execution failed on sql '{args[0]}': {exc}"</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">-&gt; 1693</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">raise</span> ex <span class="ansi-green-fg">from</span> exc
-<span class="ansi-green-intense-fg ansi-bold">   1694</span> 
-<span class="ansi-green-intense-fg ansi-bold">   1695</span>     <span class="ansi-blue-fg">@</span>staticmethod
-
-<span class="ansi-red-fg">DatabaseError</span>: Execution failed on sql 'select COUNT(AlbumId) as a from artists left join albums on artists.ArtistId = albums.ArtistId group by ArtistId': ambiguous column name: ArtistId</pre>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ArtistId</th>
+      <th>Name</th>
+      <th>AlbumId</th>
+      <th>Title</th>
+      <th>ArtistId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>AC/DC</td>
+      <td>1</td>
+      <td>For Those About To Rock We Salute You</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Accept</td>
+      <td>2</td>
+      <td>Balls to the Wall</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>Accept</td>
+      <td>3</td>
+      <td>Restless and Wild</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>AC/DC</td>
+      <td>4</td>
+      <td>Let There Be Rock</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3</td>
+      <td>Aerosmith</td>
+      <td>5</td>
+      <td>Big Ones</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>342</th>
+      <td>226</td>
+      <td>Eugene Ormandy</td>
+      <td>343</td>
+      <td>Respighi:Pines of Rome</td>
+      <td>226</td>
+    </tr>
+    <tr>
+      <th>343</th>
+      <td>272</td>
+      <td>Emerson String Quartet</td>
+      <td>344</td>
+      <td>Schubert: The Late String Quartets &amp; String Qu...</td>
+      <td>272</td>
+    </tr>
+    <tr>
+      <th>344</th>
+      <td>273</td>
+      <td>C. Monteverdi, Nigel Rogers - Chiaroscuro; Lon...</td>
+      <td>345</td>
+      <td>Monteverdi: L'Orfeo</td>
+      <td>273</td>
+    </tr>
+    <tr>
+      <th>345</th>
+      <td>274</td>
+      <td>Nash Ensemble</td>
+      <td>346</td>
+      <td>Mozart: Chamber Music</td>
+      <td>274</td>
+    </tr>
+    <tr>
+      <th>346</th>
+      <td>275</td>
+      <td>Philip Glass Ensemble</td>
+      <td>347</td>
+      <td>Koyaanisqatsi (Soundtrack from the Motion Pict...</td>
+      <td>275</td>
+    </tr>
+  </tbody>
+</table>
+<p>347 rows × 5 columns</p>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -666,6 +1366,141 @@ The above exception was the direct cause of the following exception:
 </div>
     
 
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">"select * from media_types where Name like '5AAC%'"</span><span class="p">,</span> <span class="n">con</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MediaTypeId</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">"select * from playlists where name like '_usic'"</span><span class="p">,</span> <span class="n">con</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PlaylistId</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Music</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>8</td>
+      <td>Music</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Aggregate-Functions">
+<a class="anchor" href="#Aggregate-Functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Aggregate Functions<a class="anchor-link" href="#Aggregate-Functions"> </a>
+</h2>
+<p>COUNT() SUM() MAX() MIN() AVG()</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -702,7 +1537,51 @@ The above exception was the direct cause of the following exception:
 <li>Hello This is a markdown page (missing reference)</li>
 <li><a href="http://openbook.rheinwerk-verlag.de/python/33_003.html#u33.3.1">http://openbook.rheinwerk-verlag.de/python/33_003.html#u33.3.1</a></li>
 <li><a href="https://www.sqlitetutorial.net/sqlite-left-join/">https://www.sqlitetutorial.net/sqlite-left-join/</a></li>
-<li><a href="https://realpython.com/python-sqlite-sqlalchemy/">https://realpython.com/python-sqlite-sqlalchemy/</a></li>
+<li>
+<p><a href="https://realpython.com/python-sqlite-sqlalchemy/">https://realpython.com/python-sqlite-sqlalchemy/</a></p>
+</li>
+<li>
+<p><a href="https://docs.snowflake.net/manuals/sql-reference-commands.html">https://docs.snowflake.net/manuals/sql-reference-commands.html</a></p>
+</li>
+<li>
+<p><a href="https://www.geeksforgeeks.org/sql-tutorial/">https://www.geeksforgeeks.org/sql-tutorial/</a></p>
+</li>
+<li>
+<p><a href="https://github.com/harelba/q">https://github.com/harelba/q</a></p>
+</li>
+<li>
+<p><a href="https://github.com/kennethreitz-archive/records">https://github.com/kennethreitz-archive/records</a></p>
+</li>
+<li>
+<p><a href="https://github.com/simonw/csvs-to-sqlite">https://github.com/simonw/csvs-to-sqlite</a></p>
+</li>
+<li>
+<p><a href="https://github.com/prestodb/presto">https://github.com/prestodb/presto</a></p>
+</li>
+<li>
+<p><a href="https://sqlzoo.net/">https://sqlzoo.net/</a></p>
+</li>
+<li>
+<p><a href="https://www.sqlstyle.guide/">https://www.sqlstyle.guide/</a></p>
+</li>
+<li>
+<p><a href="https://twitter.com/CMastication/status/1289919608309329921">https://twitter.com/CMastication/status/1289919608309329921</a></p>
+</li>
+<li>
+<p><a href="https://blazingsql.com/">https://blazingsql.com/</a></p>
+</li>
+<li>
+<p><a href="https://duckdb.org/">https://duckdb.org/</a></p>
+</li>
+<li>
+<p><a href="https://github.com/nackjicholson/aiosql">https://github.com/nackjicholson/aiosql</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sql-machine-learning/sqlflow">https://github.com/sql-machine-learning/sqlflow</a></p>
+</li>
+<li>
+<p><a href="https://github.com/ibis-project/ibis">https://github.com/ibis-project/ibis</a></p>
+</li>
 </ul>
 
 </div>
