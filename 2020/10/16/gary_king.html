@@ -125,7 +125,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      2 min read
+      3 min read
     
 </span></p>
 
@@ -159,6 +159,11 @@ window.onload = wrap_img;
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#Probability">Probability </a></li>
+<li class="toc-entry toc-h2"><a href="#8.-Statistical-Simulation">8. Statistical Simulation </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Example-simple-linear-model">Example simple linear model </a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h2"><a href="#Helper-Functions">Helper Functions </a></li>
 <li class="toc-entry toc-h2"><a href="#Plot-for-the-Blog-Post">Plot for the Blog Post </a></li>
 <li class="toc-entry toc-h2"><a href="#Sources">Sources </a></li>
@@ -460,6 +465,31 @@ window.onload = wrap_img;
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="8.-Statistical-Simulation">
+<a class="anchor" href="#8.-Statistical-Simulation" aria-hidden="true"><span class="octicon octicon-link"></span></a>8. Statistical Simulation<a class="anchor-link" href="#8.-Statistical-Simulation"> </a>
+</h2>
+<p>Starting from the general model specification</p>
+<p>$y_i \sim f(\theta_i , \alpha)$ stochastic component</p>
+<p>$\theta_i=g(x_i, \beta)$ systematic component</p>
+<p>Say we found the MLE estimator for $\beta$ and $\alpha$ called $\hat{\gamma}$. For this we can estimate the variance $\hat{V}(\hat{\gamma})$ and we want to make inference for soe datapoint $X_c$. We can approcxciamte the asymptoic distribution by  $N[\hat{\gamma} ,\hat{V}(\hat{\gamma})] $ With this we draw and calculate $\theta_{sim}=g(x_c, \beta_{sim})$ with this, teh draw from $\alpha$ we can use the stochastic compnent to simulate $y$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example-simple-linear-model">
+<a class="anchor" href="#Example-simple-linear-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example simple linear model<a class="anchor-link" href="#Example-simple-linear-model"> </a>
+</h3>
+<p>$y_i \sim N(\mu_i, \sigma^2)$ where the systematic component $\mu_i=\beta_0 + \beta_1 x_i$. The MLE gives estimates for $\beta_0$, $\beta_1$ and $\sigma^2$ and the correspodning covariance matrix for the estimates. Then draw from the multivariate normal the two betas and a sigma, calculate for some x the mean, with the calculated mean and the simulated sigma draw a y. Do this say 10000 times and look at the resulting distibution of y. This the uncertanity around the point estimate</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
