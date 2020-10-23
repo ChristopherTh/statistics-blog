@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Altair | Statistics-Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Altair" />
+<meta name="author" content="Christopher Thiemann" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Subheader" />
+<meta property="og:description" content="Subheader" />
+<link rel="canonical" href="https://christopherth.github.io/statistics-blog/statistics/2020/10/23/altair.html" />
+<meta property="og:url" content="https://christopherth.github.io/statistics-blog/statistics/2020/10/23/altair.html" />
+<meta property="og:site_name" content="Statistics-Blog" />
+<meta property="og:image" content="https://christopherth.github.io/statistics-blog/images/poisson.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-23T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"Altair","dateModified":"2020-10-23T00:00:00-05:00","datePublished":"2020-10-23T00:00:00-05:00","author":{"@type":"Person","name":"Christopher Thiemann"},"image":"https://christopherth.github.io/statistics-blog/images/poisson.png","description":"Subheader","mainEntityOfPage":{"@type":"WebPage","@id":"https://christopherth.github.io/statistics-blog/statistics/2020/10/23/altair.html"},"@type":"BlogPosting","url":"https://christopherth.github.io/statistics-blog/statistics/2020/10/23/altair.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/statistics-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://christopherth.github.io/statistics-blog/feed.xml" title="Statistics-Blog" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-175674558-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+<link rel="shortcut icon" type="image/x-icon" href="/statistics-blog/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Altair | Statistics-Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Altair" />
+<meta name="author" content="Christopher Thiemann" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Subheader" />
+<meta property="og:description" content="Subheader" />
+<link rel="canonical" href="https://christopherth.github.io/statistics-blog/statistics/2020/10/23/altair.html" />
+<meta property="og:url" content="https://christopherth.github.io/statistics-blog/statistics/2020/10/23/altair.html" />
+<meta property="og:site_name" content="Statistics-Blog" />
+<meta property="og:image" content="https://christopherth.github.io/statistics-blog/images/poisson.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-23T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"Altair","dateModified":"2020-10-23T00:00:00-05:00","datePublished":"2020-10-23T00:00:00-05:00","author":{"@type":"Person","name":"Christopher Thiemann"},"image":"https://christopherth.github.io/statistics-blog/images/poisson.png","description":"Subheader","mainEntityOfPage":{"@type":"WebPage","@id":"https://christopherth.github.io/statistics-blog/statistics/2020/10/23/altair.html"},"@type":"BlogPosting","url":"https://christopherth.github.io/statistics-blog/statistics/2020/10/23/altair.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://christopherth.github.io/statistics-blog/feed.xml" title="Statistics-Blog" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-175674558-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/statistics-blog/">Statistics-Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/statistics-blog/about/">About Me</a><a class="page-link" href="/statistics-blog/search/">Search</a><a class="page-link" href="/statistics-blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Altair</h1><p class="page-description">Subheader</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-23T00:00:00-05:00" itemprop="datePublished">
+        Oct 23, 2020
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Christopher Thiemann</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      1 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/statistics-blog/categories/#statistics">statistics</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/ChristopherTh/statistics-blog/tree/master/_notebooks/2020-10-23-altair.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/statistics-blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/ChristopherTh/statistics-blog/blob/master/_notebooks/2020-10-23-altair.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/statistics-blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Recipe">Recipe </a></li>
+<li class="toc-entry toc-h2"><a href="#Helper-Functions">Helper Functions </a></li>
+<li class="toc-entry toc-h2"><a href="#Plot-for-the-Blog-Post">Plot for the Blog Post </a></li>
+<li class="toc-entry toc-h2"><a href="#Sources">Sources </a></li>
+<li class="toc-entry toc-h2"><a href="#References">References </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-10-23-altair.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Recipe">
+<a class="anchor" href="#Recipe" aria-hidden="true"><span class="octicon octicon-link"></span></a>Recipe<a class="anchor-link" href="#Recipe"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">'car_crashes'</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>total</th>
+      <th>speeding</th>
+      <th>alcohol</th>
+      <th>not_distracted</th>
+      <th>no_previous</th>
+      <th>ins_premium</th>
+      <th>ins_losses</th>
+      <th>abbrev</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>18.8</td>
+      <td>7.332</td>
+      <td>5.640</td>
+      <td>18.048</td>
+      <td>15.040</td>
+      <td>784.55</td>
+      <td>145.08</td>
+      <td>AL</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>18.1</td>
+      <td>7.421</td>
+      <td>4.525</td>
+      <td>16.290</td>
+      <td>17.014</td>
+      <td>1053.48</td>
+      <td>133.93</td>
+      <td>AK</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>18.6</td>
+      <td>6.510</td>
+      <td>5.208</td>
+      <td>15.624</td>
+      <td>17.856</td>
+      <td>899.47</td>
+      <td>110.35</td>
+      <td>AZ</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>22.4</td>
+      <td>4.032</td>
+      <td>5.824</td>
+      <td>21.056</td>
+      <td>21.280</td>
+      <td>827.34</td>
+      <td>142.39</td>
+      <td>AR</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12.0</td>
+      <td>4.200</td>
+      <td>3.360</td>
+      <td>10.920</td>
+      <td>10.680</td>
+      <td>878.41</td>
+      <td>165.63</td>
+      <td>CA</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> 
+  <span class="o">.</span><span class="n">mark_point</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">'black'</span><span class="p">)</span> <span class="c1">#the kind of chart , can pass extra intputs, not based on data only of type of chart</span>
+  <span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">'total'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'speeding'</span><span class="p">,</span> <span class="n">tooltip</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'abbrev'</span><span class="p">,</span> <span class="s1">'not_distracted'</span><span class="p">])</span> <span class="c1"># encode data from df to the chart, ecnode links to df</span>
+  <span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span> <span class="c1">#ad extra properties independent of the mark and chart</span>
+  <span class="o">.</span><span class="n">interactive</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+<div id="altair-viz-03b5a534e6104d889df18a3863e89577"></div>
+<script type="text/javascript">
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-03b5a534e6104d889df18a3863e89577") {
+      outputDiv = document.getElementById("altair-viz-03b5a534e6104d889df18a3863e89577");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function loadScript(lib) {
+      return new Promise(function(resolve, reject) {
+        var s = document.createElement('script');
+        s.src = paths[lib];
+        s.async = true;
+        s.onload = () => resolve(paths[lib]);
+        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+        document.getElementsByTagName("head")[0].appendChild(s);
+      });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else if (typeof vegaEmbed === "function") {
+      displayChart(vegaEmbed);
+    } else {
+      loadScript("vega")
+        .then(() => loadScript("vega-lite"))
+        .then(() => loadScript("vega-embed"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-b4052d6f341684cce42c9d54b1cd2716"}, "mark": {"type": "point", "color": "black"}, "encoding": {"tooltip": [{"type": "nominal", "field": "abbrev"}, {"type": "quantitative", "field": "not_distracted"}], "x": {"type": "quantitative", "field": "total"}, "y": {"type": "quantitative", "field": "speeding"}}, "height": 300, "selection": {"selector003": {"type": "interval", "bind": "scales", "encodings": ["x", "y"]}}, "width": 600, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-b4052d6f341684cce42c9d54b1cd2716": [{"total": 18.8, "speeding": 7.332000000000002, "alcohol": 5.64, "not_distracted": 18.048, "no_previous": 15.04, "ins_premium": 784.55, "ins_losses": 145.08, "abbrev": "AL"}, {"total": 18.1, "speeding": 7.421, "alcohol": 4.525, "not_distracted": 16.290000000000006, "no_previous": 17.014, "ins_premium": 1053.48, "ins_losses": 133.93, "abbrev": "AK"}, {"total": 18.6, "speeding": 6.51, "alcohol": 5.208000000000001, "not_distracted": 15.624, "no_previous": 17.855999999999998, "ins_premium": 899.47, "ins_losses": 110.35, "abbrev": "AZ"}, {"total": 22.4, "speeding": 4.032, "alcohol": 5.824, "not_distracted": 21.056, "no_previous": 21.28, "ins_premium": 827.34, "ins_losses": 142.39, "abbrev": "AR"}, {"total": 12.0, "speeding": 4.2, "alcohol": 3.36, "not_distracted": 10.92, "no_previous": 10.68, "ins_premium": 878.41, "ins_losses": 165.63, "abbrev": "CA"}, {"total": 13.6, "speeding": 5.032, "alcohol": 3.808, "not_distracted": 10.743999999999998, "no_previous": 12.92, "ins_premium": 835.5, "ins_losses": 139.91, "abbrev": "CO"}, {"total": 10.8, "speeding": 4.968, "alcohol": 3.888, "not_distracted": 9.396, "no_previous": 8.856, "ins_premium": 1068.73, "ins_losses": 167.02, "abbrev": "CT"}, {"total": 16.2, "speeding": 6.1560000000000015, "alcohol": 4.86, "not_distracted": 14.094000000000001, "no_previous": 16.038, "ins_premium": 1137.87, "ins_losses": 151.48, "abbrev": "DE"}, {"total": 5.9, "speeding": 2.006, "alcohol": 1.5930000000000002, "not_distracted": 5.9, "no_previous": 5.9, "ins_premium": 1273.89, "ins_losses": 136.05, "abbrev": "DC"}, {"total": 17.9, "speeding": 3.759, "alcohol": 5.190999999999999, "not_distracted": 16.468, "no_previous": 16.826, "ins_premium": 1160.13, "ins_losses": 144.18, "abbrev": "FL"}, {"total": 15.6, "speeding": 2.964, "alcohol": 3.9, "not_distracted": 14.82, "no_previous": 14.508, "ins_premium": 913.15, "ins_losses": 142.8, "abbrev": "GA"}, {"total": 17.5, "speeding": 9.45, "alcohol": 7.175, "not_distracted": 14.35, "no_previous": 15.225, "ins_premium": 861.18, "ins_losses": 120.92, "abbrev": "HI"}, {"total": 15.3, "speeding": 5.508000000000001, "alcohol": 4.437, "not_distracted": 13.005, "no_previous": 14.994000000000002, "ins_premium": 641.96, "ins_losses": 82.75, "abbrev": "ID"}, {"total": 12.8, "speeding": 4.6080000000000005, "alcohol": 4.352, "not_distracted": 12.032, "no_previous": 12.288000000000002, "ins_premium": 803.11, "ins_losses": 139.15, "abbrev": "IL"}, {"total": 14.5, "speeding": 3.625, "alcohol": 4.205, "not_distracted": 13.775, "no_previous": 13.775, "ins_premium": 710.46, "ins_losses": 108.92, "abbrev": "IN"}, {"total": 15.7, "speeding": 2.669, "alcohol": 3.925, "not_distracted": 15.229000000000001, "no_previous": 13.659, "ins_premium": 649.06, "ins_losses": 114.47, "abbrev": "IA"}, {"total": 17.8, "speeding": 4.806, "alcohol": 4.272, "not_distracted": 13.706, "no_previous": 15.13, "ins_premium": 780.45, "ins_losses": 133.8, "abbrev": "KS"}, {"total": 21.4, "speeding": 4.066, "alcohol": 4.922, "not_distracted": 16.691999999999997, "no_previous": 16.264, "ins_premium": 872.51, "ins_losses": 137.13, "abbrev": "KY"}, {"total": 20.5, "speeding": 7.175, "alcohol": 6.765, "not_distracted": 14.965, "no_previous": 20.09, "ins_premium": 1281.55, "ins_losses": 194.78, "abbrev": "LA"}, {"total": 15.1, "speeding": 5.738, "alcohol": 4.53, "not_distracted": 13.137, "no_previous": 12.684000000000001, "ins_premium": 661.88, "ins_losses": 96.57, "abbrev": "ME"}, {"total": 12.5, "speeding": 4.25, "alcohol": 4.0, "not_distracted": 8.875, "no_previous": 12.375, "ins_premium": 1048.78, "ins_losses": 192.7, "abbrev": "MD"}, {"total": 8.2, "speeding": 1.886, "alcohol": 2.87, "not_distracted": 7.134, "no_previous": 6.56, "ins_premium": 1011.14, "ins_losses": 135.63, "abbrev": "MA"}, {"total": 14.1, "speeding": 3.384, "alcohol": 3.948, "not_distracted": 13.395, "no_previous": 10.857, "ins_premium": 1110.61, "ins_losses": 152.26, "abbrev": "MI"}, {"total": 9.6, "speeding": 2.208, "alcohol": 2.784, "not_distracted": 8.448, "no_previous": 8.448, "ins_premium": 777.18, "ins_losses": 133.35, "abbrev": "MN"}, {"total": 17.6, "speeding": 2.64, "alcohol": 5.456, "not_distracted": 1.76, "no_previous": 17.6, "ins_premium": 896.07, "ins_losses": 155.77, "abbrev": "MS"}, {"total": 16.1, "speeding": 6.923000000000001, "alcohol": 5.474000000000001, "not_distracted": 14.812, "no_previous": 13.524, "ins_premium": 790.32, "ins_losses": 144.45, "abbrev": "MO"}, {"total": 21.4, "speeding": 8.345999999999998, "alcohol": 9.416, "not_distracted": 17.976, "no_previous": 18.19, "ins_premium": 816.21, "ins_losses": 85.15, "abbrev": "MT"}, {"total": 14.9, "speeding": 1.9370000000000005, "alcohol": 5.215, "not_distracted": 13.857, "no_previous": 13.41, "ins_premium": 732.28, "ins_losses": 114.82, "abbrev": "NE"}, {"total": 14.7, "speeding": 5.439, "alcohol": 4.704, "not_distracted": 13.965, "no_previous": 14.553, "ins_premium": 1029.87, "ins_losses": 138.71, "abbrev": "NV"}, {"total": 11.6, "speeding": 4.06, "alcohol": 3.48, "not_distracted": 10.092, "no_previous": 9.628, "ins_premium": 746.54, "ins_losses": 120.21, "abbrev": "NH"}, {"total": 11.2, "speeding": 1.7919999999999998, "alcohol": 3.136, "not_distracted": 9.632, "no_previous": 8.735999999999999, "ins_premium": 1301.52, "ins_losses": 159.85, "abbrev": "NJ"}, {"total": 18.4, "speeding": 3.496, "alcohol": 4.968, "not_distracted": 12.328, "no_previous": 18.032, "ins_premium": 869.85, "ins_losses": 120.75, "abbrev": "NM"}, {"total": 12.3, "speeding": 3.936, "alcohol": 3.5670000000000006, "not_distracted": 10.824000000000002, "no_previous": 9.84, "ins_premium": 1234.31, "ins_losses": 150.01, "abbrev": "NY"}, {"total": 16.8, "speeding": 6.5520000000000005, "alcohol": 5.208000000000001, "not_distracted": 15.792, "no_previous": 13.608, "ins_premium": 708.24, "ins_losses": 127.82, "abbrev": "NC"}, {"total": 23.9, "speeding": 5.496999999999999, "alcohol": 10.038, "not_distracted": 23.661, "no_previous": 20.554, "ins_premium": 688.75, "ins_losses": 109.72, "abbrev": "ND"}, {"total": 14.1, "speeding": 3.948, "alcohol": 4.794, "not_distracted": 13.958999999999998, "no_previous": 11.562, "ins_premium": 697.73, "ins_losses": 133.52, "abbrev": "OH"}, {"total": 19.9, "speeding": 6.3679999999999986, "alcohol": 5.770999999999999, "not_distracted": 18.308, "no_previous": 18.706, "ins_premium": 881.51, "ins_losses": 178.86, "abbrev": "OK"}, {"total": 12.8, "speeding": 4.224, "alcohol": 3.3280000000000003, "not_distracted": 8.576, "no_previous": 11.52, "ins_premium": 804.71, "ins_losses": 104.61, "abbrev": "OR"}, {"total": 18.2, "speeding": 9.1, "alcohol": 5.642, "not_distracted": 17.471999999999998, "no_previous": 16.016, "ins_premium": 905.99, "ins_losses": 153.86, "abbrev": "PA"}, {"total": 11.1, "speeding": 3.774, "alcohol": 4.218, "not_distracted": 10.212, "no_previous": 8.769, "ins_premium": 1148.99, "ins_losses": 148.58, "abbrev": "RI"}, {"total": 23.9, "speeding": 9.082, "alcohol": 9.799, "not_distracted": 22.944, "no_previous": 19.359, "ins_premium": 858.97, "ins_losses": 116.29, "abbrev": "SC"}, {"total": 19.4, "speeding": 6.0139999999999985, "alcohol": 6.401999999999999, "not_distracted": 19.012, "no_previous": 16.683999999999994, "ins_premium": 669.31, "ins_losses": 96.87, "abbrev": "SD"}, {"total": 19.5, "speeding": 4.095, "alcohol": 5.655, "not_distracted": 15.99, "no_previous": 15.795, "ins_premium": 767.91, "ins_losses": 155.57, "abbrev": "TN"}, {"total": 19.4, "speeding": 7.76, "alcohol": 7.371999999999999, "not_distracted": 17.654, "no_previous": 16.878, "ins_premium": 1004.75, "ins_losses": 156.83, "abbrev": "TX"}, {"total": 11.3, "speeding": 4.859, "alcohol": 1.808, "not_distracted": 9.943999999999999, "no_previous": 10.848000000000004, "ins_premium": 809.38, "ins_losses": 109.48, "abbrev": "UT"}, {"total": 13.6, "speeding": 4.08, "alcohol": 4.08, "not_distracted": 13.056, "no_previous": 12.92, "ins_premium": 716.2, "ins_losses": 109.61, "abbrev": "VT"}, {"total": 12.7, "speeding": 2.4130000000000003, "alcohol": 3.429, "not_distracted": 11.049000000000001, "no_previous": 11.175999999999998, "ins_premium": 768.95, "ins_losses": 153.72, "abbrev": "VA"}, {"total": 10.6, "speeding": 4.452, "alcohol": 3.498, "not_distracted": 8.692, "no_previous": 9.116, "ins_premium": 890.03, "ins_losses": 111.62, "abbrev": "WA"}, {"total": 23.8, "speeding": 8.092, "alcohol": 6.664, "not_distracted": 23.086, "no_previous": 20.706, "ins_premium": 992.61, "ins_losses": 152.56, "abbrev": "WV"}, {"total": 13.8, "speeding": 4.968, "alcohol": 4.553999999999999, "not_distracted": 5.3820000000000014, "no_previous": 11.592, "ins_premium": 670.31, "ins_losses": 106.62, "abbrev": "WI"}, {"total": 17.4, "speeding": 7.308, "alcohol": 5.568, "not_distracted": 14.094000000000001, "no_previous": 15.659999999999998, "ins_premium": 791.14, "ins_losses": 122.04, "abbrev": "WY"}]}}, {"mode": "vega-lite"});
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Helper-Functions">
+<a class="anchor" href="#Helper-Functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Helper Functions<a class="anchor-link" href="#Helper-Functions"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Plot-for-the-Blog-Post">
+<a class="anchor" href="#Plot-for-the-Blog-Post" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plot for the Blog Post<a class="anchor-link" href="#Plot-for-the-Blog-Post"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Sources">
+<a class="anchor" href="#Sources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sources<a class="anchor-link" href="#Sources"> </a>
+</h2>
+<ul>
+<li>Hello This is a markdown page (missing reference)</li>
+</ul>
+<p><a href="https://twitter.com/eitanlees/status/1234608793109061633">https://twitter.com/eitanlees/status/1234608793109061633</a></p>
+<p><a href="https://towardsdatascience.com/how-to-create-interactive-and-elegant-plot-with-altair-8dd87a890f2a">https://towardsdatascience.com/how-to-create-interactive-and-elegant-plot-with-altair-8dd87a890f2a</a></p>
+<p><a href="https://calmcode.io/altair/recipe.html">https://calmcode.io/altair/recipe.html</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="References">
+<a class="anchor" href="#References" aria-hidden="true"><span class="octicon octicon-link"></span></a>References<a class="anchor-link" href="#References"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<ol class="bibliography"></ol>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="ChristopherTh/statistics-blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/statistics-blog/statistics/2020/10/23/altair.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/statistics-blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/statistics-blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/statistics-blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A Blog about explaining all different kinds of statistical topics.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/ChristopherTh" title="ChristopherTh"><svg class="svg-icon grey"><use xlink:href="/statistics-blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/ChristopherTh92" title="ChristopherTh92"><svg class="svg-icon grey"><use xlink:href="/statistics-blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
