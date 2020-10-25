@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Sklearn | Statistics-Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Sklearn" />
+<meta name="author" content="Christopher Thiemann" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Subheader" />
+<meta property="og:description" content="Subheader" />
+<link rel="canonical" href="https://christopherth.github.io/statistics-blog/python/2020/10/25/sklearn.html" />
+<meta property="og:url" content="https://christopherth.github.io/statistics-blog/python/2020/10/25/sklearn.html" />
+<meta property="og:site_name" content="Statistics-Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-25T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"Sklearn","dateModified":"2020-10-25T00:00:00-05:00","datePublished":"2020-10-25T00:00:00-05:00","author":{"@type":"Person","name":"Christopher Thiemann"},"description":"Subheader","mainEntityOfPage":{"@type":"WebPage","@id":"https://christopherth.github.io/statistics-blog/python/2020/10/25/sklearn.html"},"@type":"BlogPosting","url":"https://christopherth.github.io/statistics-blog/python/2020/10/25/sklearn.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/statistics-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://christopherth.github.io/statistics-blog/feed.xml" title="Statistics-Blog" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-175674558-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+<link rel="shortcut icon" type="image/x-icon" href="/statistics-blog/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Sklearn | Statistics-Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Sklearn" />
+<meta name="author" content="Christopher Thiemann" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Subheader" />
+<meta property="og:description" content="Subheader" />
+<link rel="canonical" href="https://christopherth.github.io/statistics-blog/python/2020/10/25/sklearn.html" />
+<meta property="og:url" content="https://christopherth.github.io/statistics-blog/python/2020/10/25/sklearn.html" />
+<meta property="og:site_name" content="Statistics-Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-25T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"Sklearn","dateModified":"2020-10-25T00:00:00-05:00","datePublished":"2020-10-25T00:00:00-05:00","author":{"@type":"Person","name":"Christopher Thiemann"},"description":"Subheader","mainEntityOfPage":{"@type":"WebPage","@id":"https://christopherth.github.io/statistics-blog/python/2020/10/25/sklearn.html"},"@type":"BlogPosting","url":"https://christopherth.github.io/statistics-blog/python/2020/10/25/sklearn.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://christopherth.github.io/statistics-blog/feed.xml" title="Statistics-Blog" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-175674558-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/statistics-blog/">Statistics-Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/statistics-blog/about/">About Me</a><a class="page-link" href="/statistics-blog/search/">Search</a><a class="page-link" href="/statistics-blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Sklearn</h1><p class="page-description">Subheader</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-25T00:00:00-05:00" itemprop="datePublished">
+        Oct 25, 2020
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Christopher Thiemann</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/statistics-blog/categories/#python">python</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/ChristopherTh/statistics-blog/tree/master/_notebooks/2020-10-25-sklearn.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/statistics-blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/ChristopherTh/statistics-blog/blob/master/_notebooks/2020-10-25-sklearn.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/statistics-blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Pipeline">Pipeline </a></li>
+<li class="toc-entry toc-h2"><a href="#Basic-Example">Basic Example </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Visualizing-The-pipeline">Visualizing The pipeline </a></li>
+<li class="toc-entry toc-h3"><a href="#Column-Transformer">Column Transformer </a></li>
+<li class="toc-entry toc-h3"><a href="#Hyperparameter-Search-with-pipelines">Hyperparameter Search with pipelines </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Helper-Functions">Helper Functions </a></li>
+<li class="toc-entry toc-h2"><a href="#Plot-for-the-Blog-Post">Plot for the Blog Post </a></li>
+<li class="toc-entry toc-h2"><a href="#Sources">Sources </a></li>
+<li class="toc-entry toc-h2"><a href="#References">References </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-10-25-sklearn.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install -U scikit-learn
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">make_column_transformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">make_column_selector</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">"car_crashes"</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">abbrev</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">abbrev</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'category'</span><span class="p">)</span>
+
+<span class="n">num_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s1">'float'</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="n">num_cols</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">'total'</span><span class="p">)</span>
+<span class="n">dep</span> <span class="o">=</span> <span class="s1">'total'</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>total</th>
+      <th>speeding</th>
+      <th>alcohol</th>
+      <th>not_distracted</th>
+      <th>no_previous</th>
+      <th>ins_premium</th>
+      <th>ins_losses</th>
+      <th>abbrev</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>18.8</td>
+      <td>7.332</td>
+      <td>5.640</td>
+      <td>18.048</td>
+      <td>15.040</td>
+      <td>784.55</td>
+      <td>145.08</td>
+      <td>AL</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>18.1</td>
+      <td>7.421</td>
+      <td>4.525</td>
+      <td>16.290</td>
+      <td>17.014</td>
+      <td>1053.48</td>
+      <td>133.93</td>
+      <td>AK</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>18.6</td>
+      <td>6.510</td>
+      <td>5.208</td>
+      <td>15.624</td>
+      <td>17.856</td>
+      <td>899.47</td>
+      <td>110.35</td>
+      <td>AZ</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>22.4</td>
+      <td>4.032</td>
+      <td>5.824</td>
+      <td>21.056</td>
+      <td>21.280</td>
+      <td>827.34</td>
+      <td>142.39</td>
+      <td>AR</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12.0</td>
+      <td>4.200</td>
+      <td>3.360</td>
+      <td>10.920</td>
+      <td>10.680</td>
+      <td>878.41</td>
+      <td>165.63</td>
+      <td>CA</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Pipeline">
+<a class="anchor" href="#Pipeline" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pipeline<a class="anchor-link" href="#Pipeline"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Basic-Example">
+<a class="anchor" href="#Basic-Example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Example<a class="anchor-link" href="#Basic-Example"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Each object exept the last one needs to implement a fit adn a transform method, the last one a predict and fit method.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+    <span class="p">[</span>
+     <span class="p">(</span><span class="s1">'scaler'</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+     <span class="p">(</span><span class="s1">'svc'</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">())</span>
+     <span class="p">]</span>
+<span class="p">)</span>
+
+
+
+
+<span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">num_cols</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">dep</span><span class="p">])</span>
+<span class="n">pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">num_cols</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([17.86228382, 17.90200464, 18.7561831 , 22.73033036, 12.49048332,
+       14.08798741, 10.9956788 , 17.03614203,  6.74224775, 18.12711261,
+       15.90388986, 17.81620763, 16.09238586, 14.20969611, 15.39380929,
+       15.56291131, 16.40187115, 17.96284823, 21.02572903, 14.65131058,
+       13.56723847,  8.40320825, 12.98428004, 10.16498961, 16.55899852,
+       16.15101221, 21.47392571, 15.70972648, 15.9815532 , 11.55023624,
+       10.26867416, 18.30452552, 11.44977103, 16.24816342, 24.79908013,
+       14.39453087, 20.59331809, 12.30851163, 18.30540464, 11.04240863,
+       23.51067113, 19.39009105, 18.14712038, 19.72229907, 11.33877896,
+       14.60754975, 12.97136277, 10.71060558, 22.93849817, 12.58163609,
+       17.37071736])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this case the whole dataframe first gets passded to the standardscaler and then to the ridge regressor.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Visualizing-The-pipeline">
+<a class="anchor" href="#Visualizing-The-pipeline" aria-hidden="true"><span class="octicon octicon-link"></span></a>Visualizing The pipeline<a class="anchor-link" href="#Visualizing-The-pipeline"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">set_config</span>
+<span class="n">set_config</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s1">'diagram'</span><span class="p">)</span>
+<span class="n">pipe</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<style>div.sk-top-container {color: black;background-color: white;}div.sk-toggleable {background-color: white;}label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}div.sk-estimator:hover {background-color: #d4ebff;}div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}div.sk-item {z-index: 1;}div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}div.sk-parallel-item:only-child::after {width: 0;}div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}div.sk-label-container {position: relative;z-index: 2;text-align: center;}div.sk-container {display: inline-block;position: relative;}</style>
+<div class="sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped">
+<div class="sk-label-container"><div class="sk-label sk-toggleable">
+<input class="sk-toggleable__control sk-hidden--visually" id="99b5ea50-d338-4582-8ba4-18074043edff" type="checkbox"><label class="sk-toggleable__label" for="99b5ea50-d338-4582-8ba4-18074043edff">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[('scaler', StandardScaler()), ('svc', Ridge())])</pre></div>
+</div></div>
+<div class="sk-serial">
+<div class="sk-item"><div class="sk-estimator sk-toggleable">
+<input class="sk-toggleable__control sk-hidden--visually" id="44f6bfdf-2614-4117-aa62-0675493cd16a" type="checkbox"><label class="sk-toggleable__label" for="44f6bfdf-2614-4117-aa62-0675493cd16a">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div>
+</div></div>
+<div class="sk-item"><div class="sk-estimator sk-toggleable">
+<input class="sk-toggleable__control sk-hidden--visually" id="c784bbee-d22c-4e01-b113-741b0dbe9d7b" type="checkbox"><label class="sk-toggleable__label" for="c784bbee-d22c-4e01-b113-741b0dbe9d7b">Ridge</label><div class="sk-toggleable__content"><pre>Ridge()</pre></div>
+</div></div>
+</div>
+</div></div></div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Column-Transformer">
+<a class="anchor" href="#Column-Transformer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Column Transformer<a class="anchor-link" href="#Column-Transformer"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Usually we want to do specific tranform for individual or subsets of columns of the feature matrix $X$. The column tranformer object is a neat <em>tranformer</em> where we can specifiy a list of tranformations and a list of column names.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">col_tranform</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="p">[</span>
+     <span class="p">(</span><span class="s1">'scaler'</span><span class="p">,</span> <span class="c1">#name</span>
+      <span class="n">StandardScaler</span><span class="p">(),</span> <span class="c1">#transformer for specified column</span>
+      <span class="p">[</span><span class="s1">'speeding'</span><span class="p">]</span> <span class="c1"># columns of df of wehich to transform</span>
+      <span class="p">)</span>
+     <span class="p">],</span>
+     <span class="n">remainder</span> <span class="o">=</span> <span class="s1">'passthrough'</span>
+<span class="p">)</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">col_tranform</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">num_cols</span><span class="p">]))</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.168148</td>
+      <td>5.640</td>
+      <td>18.048</td>
+      <td>15.040</td>
+      <td>784.55</td>
+      <td>145.08</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.212695</td>
+      <td>4.525</td>
+      <td>16.290</td>
+      <td>17.014</td>
+      <td>1053.48</td>
+      <td>133.93</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.756709</td>
+      <td>5.208</td>
+      <td>15.624</td>
+      <td>17.856</td>
+      <td>899.47</td>
+      <td>110.35</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.483614</td>
+      <td>5.824</td>
+      <td>21.056</td>
+      <td>21.280</td>
+      <td>827.34</td>
+      <td>142.39</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.399524</td>
+      <td>3.360</td>
+      <td>10.920</td>
+      <td>10.680</td>
+      <td>878.41</td>
+      <td>165.63</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Often we would liek to do certain tranformations on all numerical columns say standatization and one hot encoding on all category variables. Instead of typing in all columns by hand we can use the</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ct</span> <span class="o">=</span> <span class="n">make_column_transformer</span><span class="p">(</span>
+      <span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span>
+       <span class="n">make_column_selector</span><span class="p">(</span><span class="n">dtype_include</span><span class="o">=</span><span class="s1">'float'</span><span class="p">)),</span>  
+      <span class="p">(</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+       <span class="n">make_column_selector</span><span class="p">(</span><span class="n">dtype_include</span><span class="o">=</span><span class="s1">'category'</span><span class="p">)))</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">))</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+      <th>13</th>
+      <th>14</th>
+      <th>15</th>
+      <th>16</th>
+      <th>17</th>
+      <th>18</th>
+      <th>19</th>
+      <th>20</th>
+      <th>21</th>
+      <th>22</th>
+      <th>23</th>
+      <th>24</th>
+      <th>25</th>
+      <th>26</th>
+      <th>27</th>
+      <th>28</th>
+      <th>29</th>
+      <th>30</th>
+      <th>31</th>
+      <th>32</th>
+      <th>33</th>
+      <th>34</th>
+      <th>35</th>
+      <th>36</th>
+      <th>37</th>
+      <th>38</th>
+      <th>39</th>
+      <th>40</th>
+      <th>41</th>
+      <th>42</th>
+      <th>43</th>
+      <th>44</th>
+      <th>45</th>
+      <th>46</th>
+      <th>47</th>
+      <th>48</th>
+      <th>49</th>
+      <th>50</th>
+      <th>51</th>
+      <th>52</th>
+      <th>53</th>
+      <th>54</th>
+      <th>55</th>
+      <th>56</th>
+      <th>57</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.737446</td>
+      <td>1.168148</td>
+      <td>0.439938</td>
+      <td>1.002301</td>
+      <td>0.277692</td>
+      <td>-0.580083</td>
+      <td>0.430514</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.565936</td>
+      <td>1.212695</td>
+      <td>-0.211311</td>
+      <td>0.608532</td>
+      <td>0.807258</td>
+      <td>0.943258</td>
+      <td>-0.022900</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.688443</td>
+      <td>0.756709</td>
+      <td>0.187615</td>
+      <td>0.459357</td>
+      <td>1.033141</td>
+      <td>0.070876</td>
+      <td>-0.981778</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.619498</td>
+      <td>-0.483614</td>
+      <td>0.547408</td>
+      <td>1.676052</td>
+      <td>1.951700</td>
+      <td>-0.337701</td>
+      <td>0.321125</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.928653</td>
+      <td>-0.399524</td>
+      <td>-0.891763</td>
+      <td>-0.594276</td>
+      <td>-0.891968</td>
+      <td>-0.048418</td>
+      <td>1.266178</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">set_config</span>
+<span class="n">set_config</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s1">'diagram'</span><span class="p">)</span>
+<span class="n">ct</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<style>div.sk-top-container {color: black;background-color: white;}div.sk-toggleable {background-color: white;}label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}div.sk-estimator:hover {background-color: #d4ebff;}div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}div.sk-item {z-index: 1;}div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}div.sk-parallel-item:only-child::after {width: 0;}div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}div.sk-label-container {position: relative;z-index: 2;text-align: center;}div.sk-container {display: inline-block;position: relative;}</style>
+<div class="sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped">
+<div class="sk-label-container"><div class="sk-label sk-toggleable">
+<input class="sk-toggleable__control sk-hidden--visually" id="5c68098b-dd31-4475-8e22-51d728727393" type="checkbox"><label class="sk-toggleable__label" for="5c68098b-dd31-4475-8e22-51d728727393">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('standardscaler', StandardScaler(),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x7fd266838208&gt;),
+                                ('onehotencoder', OneHotEncoder(sparse=False),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x7fd266838828&gt;)])</pre></div>
+</div></div>
+<div class="sk-parallel">
+<div class="sk-parallel-item"><div class="sk-item">
+<div class="sk-label-container"><div class="sk-label sk-toggleable">
+<input class="sk-toggleable__control sk-hidden--visually" id="40a0eb00-2c1b-4f67-aa39-ff6196b01564" type="checkbox"><label class="sk-toggleable__label" for="40a0eb00-2c1b-4f67-aa39-ff6196b01564">standardscaler</label><div class="sk-toggleable__content"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x7fd266838208&gt;</pre></div>
+</div></div>
+<div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable">
+<input class="sk-toggleable__control sk-hidden--visually" id="da9a1790-97f8-4a7b-9a08-f0abf5be5de1" type="checkbox"><label class="sk-toggleable__label" for="da9a1790-97f8-4a7b-9a08-f0abf5be5de1">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div>
+</div></div></div>
+</div></div>
+<div class="sk-parallel-item"><div class="sk-item">
+<div class="sk-label-container"><div class="sk-label sk-toggleable">
+<input class="sk-toggleable__control sk-hidden--visually" id="2f0ec06e-6849-4981-8d8a-be82af32501d" type="checkbox"><label class="sk-toggleable__label" for="2f0ec06e-6849-4981-8d8a-be82af32501d">onehotencoder</label><div class="sk-toggleable__content"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x7fd266838828&gt;</pre></div>
+</div></div>
+<div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable">
+<input class="sk-toggleable__control sk-hidden--visually" id="62e5cf98-3bf6-4cb5-82aa-0c0af43c4740" type="checkbox"><label class="sk-toggleable__label" for="62e5cf98-3bf6-4cb5-82aa-0c0af43c4740">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(sparse=False)</pre></div>
+</div></div></div>
+</div></div>
+</div>
+</div></div></div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Hyperparameter-Search-with-pipelines">
+<a class="anchor" href="#Hyperparameter-Search-with-pipelines" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hyperparameter Search with pipelines<a class="anchor-link" href="#Hyperparameter-Search-with-pipelines"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+    <span class="p">[</span>
+     <span class="p">(</span><span class="s1">'scaler'</span><span class="p">,</span> <span class="c1">#name</span>
+      <span class="n">StandardScaler</span><span class="p">(),</span> <span class="c1">#transformer for specified column</span>
+      <span class="n">make_column_selector</span><span class="p">(</span><span class="n">dtype_include</span><span class="o">=</span><span class="s1">'float'</span><span class="p">)</span> <span class="c1"># columns of df of wehich to transform</span>
+      <span class="p">),</span>
+     <span class="p">(</span><span class="s1">'pca'</span><span class="p">,</span> <span class="c1">#name</span>
+      <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#transformer for specified column</span>
+ <span class="c1"># columns of df of wehich to transform</span>
+      <span class="p">)]</span>
+<span class="p">)</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">col_tranform</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">))</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.737446</td>
+      <td>1.168148</td>
+      <td>0.439938</td>
+      <td>1.002301</td>
+      <td>0.277692</td>
+      <td>-0.580083</td>
+      <td>0.430514</td>
+      <td>-101.126075</td>
+      <td>19.626205</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.565936</td>
+      <td>1.212695</td>
+      <td>-0.211311</td>
+      <td>0.608532</td>
+      <td>0.807258</td>
+      <td>0.943258</td>
+      <td>-0.022900</td>
+      <td>165.796019</td>
+      <td>-14.905490</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.688443</td>
+      <td>0.756709</td>
+      <td>0.187615</td>
+      <td>0.459357</td>
+      <td>1.033141</td>
+      <td>0.070876</td>
+      <td>-0.981778</td>
+      <td>10.315344</td>
+      <td>-24.925480</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.619498</td>
+      <td>-0.483614</td>
+      <td>0.547408</td>
+      <td>1.676052</td>
+      <td>1.951700</td>
+      <td>-0.337701</td>
+      <td>0.321125</td>
+      <td>-58.784290</td>
+      <td>13.517557</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.928653</td>
+      <td>-0.399524</td>
+      <td>-0.891763</td>
+      <td>-0.594276</td>
+      <td>-0.891968</td>
+      <td>-0.048418</td>
+      <td>1.266178</td>
+      <td>-5.747290</td>
+      <td>31.519260</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ct</span> <span class="o">=</span> <span class="n">make_column_transformer</span><span class="p">(</span>
+      <span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span>
+       <span class="n">make_column_selector</span><span class="p">(</span><span class="n">dtype_include</span><span class="o">=</span><span class="s1">'float'</span><span class="p">))</span> 
+      <span class="p">)</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">PCA</span><span class="p">(),</span> <span class="n">Ridge</span><span class="p">())</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">num_cols</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">total</span><span class="p">)</span>
+
+<span class="n">param_grid</span> <span class="o">=</span>  <span class="p">{</span><span class="s1">'columntransformer__standardscaler__with_mean'</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span> <span class="s1">'pca__n_components'</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]}</span>
+    
+
+
+
+<span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">num_cols</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">total</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<style>div.sk-top-container {color: black;background-color: white;}div.sk-toggleable {background-color: white;}label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}div.sk-estimator:hover {background-color: #d4ebff;}div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}div.sk-item {z-index: 1;}div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}div.sk-parallel-item:only-child::after {width: 0;}div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}div.sk-label-container {position: relative;z-index: 2;text-align: center;}div.sk-container {display: inline-block;position: relative;}</style>
+<div class="sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped">
+<div class="sk-label-container"><div class="sk-label sk-toggleable">
+<input class="sk-toggleable__control sk-hidden--visually" id="4b450fe3-975e-492f-a633-a138391c0c68" type="checkbox"><label class="sk-toggleable__label" for="4b450fe3-975e-492f-a633-a138391c0c68">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(estimator=Pipeline(steps=[('columntransformer',
+                                        ColumnTransformer(transformers=[('standardscaler',
+                                                                         StandardScaler(),
+                                                                         &lt;sklearn.compose._column_transformer.make_column_selector object at 0x7fd2662e3b38&gt;)])),
+                                       ('pca', PCA()), ('ridge', Ridge())]),
+             n_jobs=1,
+             param_grid={'columntransformer__standardscaler__with_mean': [True,
+                                                                          False],
+                         'pca__n_components': [3, 4, 5]})</pre></div>
+</div></div>
+<div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-serial">
+<div class="sk-item sk-dashed-wrapped">
+<div class="sk-label-container"><div class="sk-label sk-toggleable">
+<input class="sk-toggleable__control sk-hidden--visually" id="a8b21479-9e28-4e44-944a-623c389dff16" type="checkbox"><label class="sk-toggleable__label" for="a8b21479-9e28-4e44-944a-623c389dff16">columntransformer: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('standardscaler', StandardScaler(),
+                                 &lt;sklearn.compose._column_transformer.make_column_selector object at 0x7fd2662e3b38&gt;)])</pre></div>
+</div></div>
+<div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item">
+<div class="sk-label-container"><div class="sk-label sk-toggleable">
+<input class="sk-toggleable__control sk-hidden--visually" id="fe34efff-42bc-4714-8ebe-f699854b1efd" type="checkbox"><label class="sk-toggleable__label" for="fe34efff-42bc-4714-8ebe-f699854b1efd">standardscaler</label><div class="sk-toggleable__content"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x7fd2662e3b38&gt;</pre></div>
+</div></div>
+<div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable">
+<input class="sk-toggleable__control sk-hidden--visually" id="19e6ee18-7a95-42f7-b202-3642b4394dbb" type="checkbox"><label class="sk-toggleable__label" for="19e6ee18-7a95-42f7-b202-3642b4394dbb">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div>
+</div></div></div>
+</div></div></div>
+</div>
+<div class="sk-item"><div class="sk-estimator sk-toggleable">
+<input class="sk-toggleable__control sk-hidden--visually" id="3f042db9-e60d-4bea-a187-291dc497e60b" type="checkbox"><label class="sk-toggleable__label" for="3f042db9-e60d-4bea-a187-291dc497e60b">PCA</label><div class="sk-toggleable__content"><pre>PCA()</pre></div>
+</div></div>
+<div class="sk-item"><div class="sk-estimator sk-toggleable">
+<input class="sk-toggleable__control sk-hidden--visually" id="240058ae-2d42-4648-b1a3-22d72e1df8f9" type="checkbox"><label class="sk-toggleable__label" for="240058ae-2d42-4648-b1a3-22d72e1df8f9">Ridge</label><div class="sk-toggleable__content"><pre>Ridge()</pre></div>
+</div></div>
+</div></div></div></div></div></div>
+</div></div></div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">clf</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{'columntransformer': ColumnTransformer(transformers=[('standardscaler', StandardScaler(),
+                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x7fd266552550&gt;)]),
+ 'columntransformer__n_jobs': None,
+ 'columntransformer__remainder': 'drop',
+ 'columntransformer__sparse_threshold': 0.3,
+ 'columntransformer__standardscaler': StandardScaler(),
+ 'columntransformer__standardscaler__copy': True,
+ 'columntransformer__standardscaler__with_mean': True,
+ 'columntransformer__standardscaler__with_std': True,
+ 'columntransformer__transformer_weights': None,
+ 'columntransformer__transformers': [('standardscaler',
+   StandardScaler(),
+   &lt;sklearn.compose._column_transformer.make_column_selector at 0x7fd266552550&gt;)],
+ 'columntransformer__verbose': False,
+ 'memory': None,
+ 'pca': PCA(),
+ 'pca__copy': True,
+ 'pca__iterated_power': 'auto',
+ 'pca__n_components': None,
+ 'pca__random_state': None,
+ 'pca__svd_solver': 'auto',
+ 'pca__tol': 0.0,
+ 'pca__whiten': False,
+ 'ridge': Ridge(),
+ 'ridge__alpha': 1.0,
+ 'ridge__copy_X': True,
+ 'ridge__fit_intercept': True,
+ 'ridge__max_iter': None,
+ 'ridge__normalize': False,
+ 'ridge__random_state': None,
+ 'ridge__solver': 'auto',
+ 'ridge__tol': 0.001,
+ 'steps': [('columntransformer',
+   ColumnTransformer(transformers=[('standardscaler', StandardScaler(),
+                                    &lt;sklearn.compose._column_transformer.make_column_selector object at 0x7fd266552550&gt;)])),
+  ('pca', PCA()),
+  ('ridge', Ridge())],
+ 'verbose': False}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Helper-Functions">
+<a class="anchor" href="#Helper-Functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Helper Functions<a class="anchor-link" href="#Helper-Functions"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Plot-for-the-Blog-Post">
+<a class="anchor" href="#Plot-for-the-Blog-Post" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plot for the Blog Post<a class="anchor-link" href="#Plot-for-the-Blog-Post"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Sources">
+<a class="anchor" href="#Sources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sources<a class="anchor-link" href="#Sources"> </a>
+</h2>
+<ul>
+<li>Hello This is a markdown page (missing reference)</li>
+</ul>
+<p><a href="https://github.com/ypeleg/HungaBunga">https://github.com/ypeleg/HungaBunga</a></p>
+<p><a href="https://github.com/alegonz/baikal">https://github.com/alegonz/baikal</a></p>
+<p><a href="https://github.com/jem1031/pandas-pipelines-custom-transformers">https://github.com/jem1031/pandas-pipelines-custom-transformers</a></p>
+<p><a href="https://github.com/jundongl/scikit-feature">https://github.com/jundongl/scikit-feature</a></p>
+<p><a href="https://github.com/scikit-multilearn/scikit-multilearn">https://github.com/scikit-multilearn/scikit-multilearn</a></p>
+<p><a href="https://github.com/amueller/patsylearn">https://github.com/amueller/patsylearn</a></p>
+<p><a href="https://www.scikit-yb.org/en/latest/">https://www.scikit-yb.org/en/latest/</a></p>
+<p><a href="https://github.com/koaning/scikit-lego">https://github.com/koaning/scikit-lego</a></p>
+<p><a href="https://github.com/tmadl/sklearn-expertsys">https://github.com/tmadl/sklearn-expertsys</a></p>
+<p><a href="https://scikit-learn.org/stable/tutorial/machine_learning_map/">https://scikit-learn.org/stable/tutorial/machine_learning_map/</a></p>
+<p><a href="https://medium.com/@chris_bour/an-extended-version-of-the-scikit-learn-cheat-sheet-5f46efc6cbb">https://medium.com/@chris_bour/an-extended-version-of-the-scikit-learn-cheat-sheet-5f46efc6cbb</a></p>
+<p><a href="https://twitter.com/justmarkham/status/1239900312862953473">https://twitter.com/justmarkham/status/1239900312862953473</a></p>
+<p><a href="https://twitter.com/amuellerml/status/1255662574416408577">https://twitter.com/amuellerml/status/1255662574416408577</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="References">
+<a class="anchor" href="#References" aria-hidden="true"><span class="octicon octicon-link"></span></a>References<a class="anchor-link" href="#References"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<ol class="bibliography"></ol>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="ChristopherTh/statistics-blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/statistics-blog/python/2020/10/25/sklearn.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/statistics-blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/statistics-blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/statistics-blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A Blog about explaining all different kinds of statistical topics.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/ChristopherTh" title="ChristopherTh"><svg class="svg-icon grey"><use xlink:href="/statistics-blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/ChristopherTh92" title="ChristopherTh92"><svg class="svg-icon grey"><use xlink:href="/statistics-blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
