@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Python | Statistics-Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Python" />
+<meta name="author" content="Christopher Thiemann" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Subheader" />
+<meta property="og:description" content="Subheader" />
+<link rel="canonical" href="https://christopherth.github.io/statistics-blog/python/2020/10/26/python.html" />
+<meta property="og:url" content="https://christopherth.github.io/statistics-blog/python/2020/10/26/python.html" />
+<meta property="og:site_name" content="Statistics-Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-26T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"Python","dateModified":"2020-10-26T00:00:00-05:00","datePublished":"2020-10-26T00:00:00-05:00","author":{"@type":"Person","name":"Christopher Thiemann"},"description":"Subheader","mainEntityOfPage":{"@type":"WebPage","@id":"https://christopherth.github.io/statistics-blog/python/2020/10/26/python.html"},"@type":"BlogPosting","url":"https://christopherth.github.io/statistics-blog/python/2020/10/26/python.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/statistics-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://christopherth.github.io/statistics-blog/feed.xml" title="Statistics-Blog" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-175674558-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+<link rel="shortcut icon" type="image/x-icon" href="/statistics-blog/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Python | Statistics-Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Python" />
+<meta name="author" content="Christopher Thiemann" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Subheader" />
+<meta property="og:description" content="Subheader" />
+<link rel="canonical" href="https://christopherth.github.io/statistics-blog/python/2020/10/26/python.html" />
+<meta property="og:url" content="https://christopherth.github.io/statistics-blog/python/2020/10/26/python.html" />
+<meta property="og:site_name" content="Statistics-Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-26T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"Python","dateModified":"2020-10-26T00:00:00-05:00","datePublished":"2020-10-26T00:00:00-05:00","author":{"@type":"Person","name":"Christopher Thiemann"},"description":"Subheader","mainEntityOfPage":{"@type":"WebPage","@id":"https://christopherth.github.io/statistics-blog/python/2020/10/26/python.html"},"@type":"BlogPosting","url":"https://christopherth.github.io/statistics-blog/python/2020/10/26/python.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://christopherth.github.io/statistics-blog/feed.xml" title="Statistics-Blog" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-175674558-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/statistics-blog/">Statistics-Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/statistics-blog/about/">About Me</a><a class="page-link" href="/statistics-blog/search/">Search</a><a class="page-link" href="/statistics-blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Python</h1><p class="page-description">Subheader</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-26T00:00:00-05:00" itemprop="datePublished">
+        Oct 26, 2020
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Christopher Thiemann</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/statistics-blog/categories/#python">python</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/ChristopherTh/statistics-blog/tree/master/_notebooks/2020-10-26-python.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/statistics-blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/ChristopherTh/statistics-blog/blob/master/_notebooks/2020-10-26-python.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/statistics-blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Standartpackages">Standartpackages </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Pathlib">Pathlib </a></li>
+<li class="toc-entry toc-h3"><a href="#Shutil">Shutil </a></li>
+<li class="toc-entry toc-h3"><a href="#Time/-Datetime-/Dateutil">Time/ Datetime /Dateutil </a></li>
+<li class="toc-entry toc-h3"><a href="#logging">logging </a></li>
+<li class="toc-entry toc-h3"><a href="#ftp">ftp </a></li>
+<li class="toc-entry toc-h3"><a href="#sys">sys </a></li>
+<li class="toc-entry toc-h3"><a href="#pytest">pytest </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Helper-Functions">Helper Functions </a></li>
+<li class="toc-entry toc-h2"><a href="#Plot-for-the-Blog-Post">Plot for the Blog Post </a></li>
+<li class="toc-entry toc-h2"><a href="#Sources">Sources </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Websites">Websites </a></li>
+<li class="toc-entry toc-h3"><a href="#Books">Books </a></li>
+<li class="toc-entry toc-h3"><a href="#Repos">Repos </a></li>
+<li class="toc-entry toc-h3"><a href="#Cheatsheet">Cheatsheet </a></li>
+<li class="toc-entry toc-h3"><a href="#Kurse">Kurse </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#References">References </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-10-26-python.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Standartpackages">
+<a class="anchor" href="#Standartpackages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Standartpackages<a class="anchor-link" href="#Standartpackages"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Pathlib">
+<a class="anchor" href="#Pathlib" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pathlib<a class="anchor-link" href="#Pathlib"> </a>
+</h3>
+<p>Cheatsheet:  <a href="https://github.com/chris1610/pbpython/blob/master/extras/Pathlib-Cheatsheet.pdf">https://github.com/chris1610/pbpython/blob/master/extras/Pathlib-Cheatsheet.pdf</a></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+
+<span class="c1"># absoluten pfad zu .py datei</span>
+<span class="n">cwd</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+
+<span class="c1"># pfad erweitern</span>
+<span class="n">cwd</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s2">"Test"</span><span class="p">)</span>
+
+<span class="c1"># in dem Pfad nach Datein suchen</span>
+<span class="n">cwd</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">'*.py'</span><span class="p">)</span>
+
+<span class="c1"># rekursiv nach datein matchen</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">cwd</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s1">'*.py'</span><span class="p">))</span>
+
+<span class="c1">#neuen ordner erstellen</span>
+<span class="n">new_folder</span> <span class="o">=</span> <span class="n">cwd</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s2">"new_folder"</span><span class="p">)</span>
+<span class="n">new_folder</span><span class="o">.</span><span class="n">mkdir</span><span class="p">()</span>
+
+
+<span class="c1"># datei erstellen</span>
+<span class="n">new_folder</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s2">"test_script.py"</span><span class="p">)</span><span class="o">.</span><span class="n">touch</span><span class="p">()</span>
+
+<span class="c1"># ordner löschen</span>
+<span class="n">new_folder</span><span class="o">.</span><span class="n">rmdir</span><span class="p">()</span>
+
+
+
+<span class="k">with</span> <span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="o">...</span>     <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+
+<span class="c1"># erstellt relativen pfad zu dierser datei</span>
+<span class="n">Path</span><span class="p">(</span><span class="s1">'.'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Shutil">
+<a class="anchor" href="#Shutil" aria-hidden="true"><span class="octicon octicon-link"></span></a>Shutil<a class="anchor-link" href="#Shutil"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># kopieren einer datei</span>
+<span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">'.'</span><span class="p">)</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s2">"test.txt"</span><span class="p">),</span> <span class="n">cwd</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s2">"hallo"</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Time/-Datetime-/Dateutil">
+<a class="anchor" href="#Time/-Datetime-/Dateutil" aria-hidden="true"><span class="octicon octicon-link"></span></a>Time/ Datetime /Dateutil<a class="anchor-link" href="#Time/-Datetime-/Dateutil"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span><span class="p">,</span> <span class="n">perf_counter</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">dateutil.relativedelta</span> <span class="kn">import</span> <span class="n">relativedelta</span>
+
+<span class="c1">## time module</span>
+
+<span class="c1"># stoppen des Programms für 5 sekunden</span>
+<span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Laufzeit von Funktionen messen</span>
+<span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+
+    <span class="n">init</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+
+        <span class="n">n</span><span class="p">,</span> <span class="n">n1</span> <span class="o">=</span> <span class="n">init</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">init</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="n">init</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="n">n1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">init</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+
+<span class="n">fib</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span>
+
+<span class="n">end</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Die Funktion lief </span><span class="si">{</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="si">}</span><span class="s2"> Sekunden"</span><span class="p">)</span>
+
+
+<span class="c1">## datetime module</span>
+
+<span class="c1"># date darstellung von tag, monat, jahr</span>
+<span class="c1"># time darstellung von stunde minuite sekunde ...</span>
+<span class="c1"># datetime = date + time</span>
+<span class="c1"># timedelta beschreibt Zeitspannen zwieschen datetime und date objecten</span>
+
+<span class="c1">## date</span>
+
+<span class="c1"># erzeugen eines Datums, Hinweis: Wirft Fehler bei SChaltjahr</span>
+<span class="c1"># Januar = 1, Februar = 2, ...</span>
+<span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Holen das Akutellen Datums</span>
+<span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+
+<span class="c1"># umwandeln datetime.ddate objecte in ein string</span>
+
+<span class="n">bsp_datum</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+
+<span class="n">date</span><span class="o">.</span><span class="n">ctime</span><span class="p">(</span><span class="n">bsp_datum</span><span class="p">)</span>  <span class="c1">#  Format 'Tue Oct 23 00:00:00 1989'</span>
+<span class="n">date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(</span><span class="n">bsp_datum</span><span class="p">)</span>  <span class="c1"># "YYYY-MM-DD"</span>
+<span class="n">bsp_datum</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span>
+    <span class="s2">"</span><span class="si">%d</span><span class="s2">.%m.%Y um %H:%M:%S Uhr"</span>
+<span class="p">)</span>  <span class="c1"># custom format für zum Beispiel Deutsche Zeit</span>
+
+<span class="n">bsp_datum</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span>  <span class="c1"># gibt Wochjendtag zurück, 0 = Montag, 1 = Dienstag usw.</span>
+
+<span class="c1">## time</span>
+
+<span class="n">time</span><span class="p">(</span><span class="n">hour</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">minute</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">second</span><span class="o">=</span><span class="mi">36</span><span class="p">,</span> <span class="n">microsecond</span><span class="o">=</span><span class="mi">123456</span><span class="p">)</span>
+
+<span class="c1">## datetime</span>
+<span class="n">d1</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">1989</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">minute</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">second</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">d1</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+<span class="n">d1</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span>
+<span class="n">d1</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">d1</span><span class="o">.</span><span class="n">month</span>
+<span class="n">d1</span><span class="o">.</span><span class="n">hour</span>
+
+<span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>  <span class="c1"># aktuelles dateime</span>
+<span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>  <span class="c1"># aktuelles datime utc</span>
+
+<span class="c1"># Umwandeln von string zu datum object</span>
+<span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s2">"04.12.1997"</span><span class="p">,</span> <span class="s2">"</span><span class="si">%d</span><span class="s2">.%m.%Y"</span><span class="p">)</span>
+
+<span class="c1"># umwandeln von datetime zu date object</span>
+<span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="n">bsp_datum</span><span class="p">)</span>
+
+<span class="c1">## timedelta</span>
+
+<span class="c1"># date object 1 jahr in die Zukunft schieben</span>
+<span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="mi">365</span><span class="p">)</span>
+
+<span class="c1"># date object 1 jahr in die Vergangenheit schieben</span>
+<span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="mi">365</span><span class="p">)</span>
+
+<span class="c1"># mit timedelte objecten kann gerechnet werden</span>
+<span class="n">timedelta</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">365</span>
+
+<span class="c1"># differenzen von datetime/date objecten ergibt timedelta object</span>
+<span class="n">d2</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">1989</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">00</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">delta1</span> <span class="o">=</span> <span class="n">d2</span> <span class="o">-</span> <span class="n">d1</span>
+
+<span class="c1">## dateutil</span>
+
+<span class="c1"># schiebt das datum um 1 tag nach vorne</span>
+<span class="n">bsp_datum</span> <span class="o">+</span> <span class="n">relativedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># sertzt auf ein tag, beachte day vs. day(s) !</span>
+<span class="n">bsp_datum</span> <span class="o">+</span> <span class="n">relativedelta</span><span class="p">(</span><span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># differenz bilden</span>
+<span class="n">relativedelta</span><span class="p">(</span><span class="n">date</span><span class="p">(</span><span class="mi">2008</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">date</span><span class="p">(</span><span class="mi">2006</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="p">))</span>
+<span class="n">relativedelta</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">(),</span> <span class="n">date</span><span class="p">(</span><span class="mi">1994</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">19</span><span class="p">))</span>  <span class="c1"># alter berechen</span>
+
+
+
+<span class="kn">from</span> <span class="nn">dateutil.rrule</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># nächsten 10 Tage</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">rrule</span><span class="p">(</span><span class="n">DAILY</span><span class="p">,</span> <span class="n">dtstart</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">(),</span> <span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># täglich bis ...</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">rrule</span><span class="p">(</span><span class="n">DAILY</span><span class="p">,</span> <span class="n">dtstart</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">(),</span> <span class="n">until</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="n">rrule</span><span class="p">(</span><span class="n">DAILY</span><span class="p">,</span> <span class="n">dtstart</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">until</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">bymonth</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="logging">
+<a class="anchor" href="#logging" aria-hidden="true"><span class="octicon octicon-link"></span></a>logging<a class="anchor-link" href="#logging"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#main.py</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">auxiliary_module</span>
+
+<span class="c1">## Erstelle zwei logger handlder, einer der alles ohne zu löschjen</span>
+<span class="c1">## in eine log datei schreibt und einen zweiten für die console</span>
+
+<span class="c1"># create logger with 'spam_application'</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>  <span class="c1"># kein name eintragen!</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="c1"># create file handler which logs even debug messages</span>
+<span class="n">fh</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="s2">"aktueller_log.log"</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"w"</span><span class="p">)</span>
+<span class="n">fh</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+<span class="n">fh1</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="s2">"continious_log.log"</span><span class="p">)</span>
+<span class="n">fh1</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+
+<span class="n">ch</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+<span class="n">ch</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="c1"># create formatter and add it to the handlers</span>
+<span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span>
+    <span class="s2">"</span><span class="si">%(asctime)s</span><span class="s2"> - </span><span class="si">%(name)s</span><span class="s2"> - </span><span class="si">%(levelname)s</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"</span><span class="si">%d</span><span class="s2">.%m.%Y %H:%M:%S"</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fh</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+<span class="n">fh1</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+<span class="n">ch</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+
+<span class="c1"># add the handlers to the logger</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">fh1</span><span class="p">)</span>
+
+
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Teestmedsage"</span><span class="p">)</span>
+
+
+<span class="n">auxiliary_module</span><span class="o">.</span><span class="n">some_function</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#aux_.üyfile</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="c1"># mehr nicht reinschreiben, alle handler, einstellungen werrden im hauptscript definiert</span>
+
+<span class="c1"># create logger</span>
+<span class="n">module_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">some_function</span><span class="p">():</span>
+    <span class="n">module_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">'received a call to "some_function"'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="ftp">
+<a class="anchor" href="#ftp" aria-hidden="true"><span class="octicon octicon-link"></span></a>ftp<a class="anchor-link" href="#ftp"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">ftplib</span><span class="o">.</span><span class="n">FTP</span><span class="p">(</span><span class="s2">"ftp.bsh.de"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">cwd</span><span class="p">(</span><span class="s2">"AufMod-Data/CSV_XYZ_files/Bathymetries1982_2012CSV"</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span> <span class="k">as</span> <span class="n">buf</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">retrbinary</span><span class="p">(</span><span class="sa">f</span><span class="s1">'RETR Bathymetry_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">.zip'</span><span class="p">,</span> <span class="n">buf</span><span class="o">.</span><span class="n">write</span><span class="p">)</span>
+
+            <span class="n">buf</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Bathymetry_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">.csv"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+                <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="sys">
+<a class="anchor" href="#sys" aria-hidden="true"><span class="octicon octicon-link"></span></a>sys<a class="anchor-link" href="#sys"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1"># lite mit command words</span>
+<span class="c1"># zum Beispiel python3 file.py -hello</span>
+<span class="c1"># sys.argv = ['file.py', 'hello']</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">argv</span> 
+
+<span class="c1"># pfad die python interpreer </span>
+<span class="c1"># nach moulen durchsucht</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="pytest">
+<a class="anchor" href="#pytest" aria-hidden="true"><span class="octicon octicon-link"></span></a>pytest<a class="anchor-link" href="#pytest"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.testing</span> <span class="kn">import</span> <span class="n">assert_allclose</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1">## command line</span>
+<span class="c1"># coverage run -m pytest</span>
+<span class="c1"># danach coverage html</span>
+
+<span class="c1"># pytest path/file.py::test_name     macht nur diesen test</span>
+
+
+<span class="c1"># einfacher test</span>
+
+
+<span class="k">def</span> <span class="nf">test_simple</span><span class="p">():</span>
+
+    <span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="s2">"hello"</span> <span class="o">==</span> <span class="s2">"hello"</span>
+
+
+<span class="c1"># wenn ich einen test habe der eine funktion für verschiedene Werte überprüfen möchte kann ich das paramatriesieren</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">"input1, input2"</span><span class="p">,</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">test_para</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">):</span>
+
+    <span class="k">assert</span> <span class="n">input1</span> <span class="o">==</span> <span class="n">input2</span>
+
+
+<span class="k">def</span> <span class="nf">my_func</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"input not a number"</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">number</span> <span class="o">+</span> <span class="mi">1</span>
+
+
+<span class="k">def</span> <span class="nf">test_raise</span><span class="p">():</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+        <span class="n">my_func</span><span class="p">(</span><span class="s2">"a"</span><span class="p">)</span>
+
+
+<span class="c1"># fixture erstellen</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">example_df</span><span class="p">():</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"text"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"hello"</span><span class="p">,</span> <span class="s2">"bye"</span><span class="p">],</span> <span class="s2">"num"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+
+
+<span class="k">def</span> <span class="nf">test_df1</span><span class="p">(</span><span class="n">example_df</span><span class="p">):</span>
+
+    <span class="k">assert</span> <span class="n">example_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Helper-Functions">
+<a class="anchor" href="#Helper-Functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Helper Functions<a class="anchor-link" href="#Helper-Functions"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Plot-for-the-Blog-Post">
+<a class="anchor" href="#Plot-for-the-Blog-Post" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plot for the Blog Post<a class="anchor-link" href="#Plot-for-the-Blog-Post"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Sources">
+<a class="anchor" href="#Sources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sources<a class="anchor-link" href="#Sources"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Websites">
+<a class="anchor" href="#Websites" aria-hidden="true"><span class="octicon octicon-link"></span></a>Websites<a class="anchor-link" href="#Websites"> </a>
+</h3>
+<p><a href="https://www.pythonlikeyoumeanit.com/module_4.html">https://www.pythonlikeyoumeanit.com/module_4.html</a></p>
+<p><a href="https://realpython.com/">https://realpython.com/</a></p>
+<p><a href="https://learn.draft.dev/technical-blogs/python">https://learn.draft.dev/technical-blogs/python</a></p>
+<p><a href="https://twitter.com/raymondh/status/1309935931818831874">https://twitter.com/raymondh/status/1309935931818831874</a></p>
+<p><a href="https://twitter.com/svpino/status/1308632185113579522">https://twitter.com/svpino/status/1308632185113579522</a></p>
+<p><a href="https://pymotw.com/2/glob/">https://pymotw.com/2/glob/</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Books">
+<a class="anchor" href="#Books" aria-hidden="true"><span class="octicon octicon-link"></span></a>Books<a class="anchor-link" href="#Books"> </a>
+</h3>
+<p>fluent python</p>
+<p><a href="https://github.com/AllenDowney/ThinkPython2">https://github.com/AllenDowney/ThinkPython2</a></p>
+<p><a href="https://www.amazon.de/Modern-Python-Standard-Library-Cookbook/dp/1788830822">https://www.amazon.de/Modern-Python-Standard-Library-Cookbook/dp/1788830822</a></p>
+<p><a href="https://www.amazon.de/Python-Informatics-Dr-Charles-Severance/dp/1492339245">https://www.amazon.de/Python-Informatics-Dr-Charles-Severance/dp/1492339245</a></p>
+<p>High Performance Python: Practical Performant Programming for Humans 2nd Edition</p>
+<p><a href="http://openbook.rheinwerk-verlag.de/python/">http://openbook.rheinwerk-verlag.de/python/</a></p>
+<p><a href="https://automatetheboringstuff.com/">https://automatetheboringstuff.com/</a></p>
+<p>A Practical Introduction to Python 3</p>
+<p><a href="https://book.pythontips.com/en/latest/index.html">https://book.pythontips.com/en/latest/index.html</a></p>
+<p>python essential reference</p>
+<p><a href="https://www.fullstackpython.com/">https://www.fullstackpython.com/</a></p>
+<p><a href="https://www.kevinsheppard.com/files/teaching/python/notes/python_introduction_2019.pdf">https://www.kevinsheppard.com/files/teaching/python/notes/python_introduction_2019.pdf</a></p>
+<p><a href="https://www.slitherintopython.com/">https://www.slitherintopython.com/</a></p>
+<p><a href="https://py-pkgs.org/">https://py-pkgs.org/</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Repos">
+<a class="anchor" href="#Repos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Repos<a class="anchor-link" href="#Repos"> </a>
+</h3>
+<p><a href="https://github.com/python-poetry/poetry">https://github.com/python-poetry/poetry</a></p>
+<p><a href="https://github.com/satwikkansal/wtfpython">https://github.com/satwikkansal/wtfpython</a></p>
+<p><a href="https://quantecon.org/quantecon-py/">https://quantecon.org/quantecon-py/</a></p>
+<p><a href="https://www.geeksforgeeks.org/python-programming-language/">https://www.geeksforgeeks.org/python-programming-language/</a></p>
+<p><a href="https://github.com/cool-RR/PySnooper">https://github.com/cool-RR/PySnooper</a></p>
+<p><a href="https://github.com/python-attrs/attrs">https://github.com/python-attrs/attrs</a></p>
+<p><a href="https://pbpython.com/">https://pbpython.com/</a></p>
+<p><a href="https://awesome-python.com/">https://awesome-python.com/</a></p>
+<p><a href="https://github.com/itamarst/eliot">https://github.com/itamarst/eliot</a></p>
+<p><a href="https://github.com/8080labs/pyforest">https://github.com/8080labs/pyforest</a></p>
+<p><a href="https://github.com/keon/algorithms">https://github.com/keon/algorithms</a></p>
+<p><a href="https://numfocus.org/">https://numfocus.org/</a></p>
+<p><a href="https://github.com/chiphuyen/python-is-cool">https://github.com/chiphuyen/python-is-cool</a></p>
+<p><a href="https://github.com/faif/python-patterns">https://github.com/faif/python-patterns</a></p>
+<p><a href="https://github.com/dbader/schedule">https://github.com/dbader/schedule</a></p>
+<p><a href="https://calmcode.io/">https://calmcode.io/</a></p>
+<p><a href="https://github.com/tiangolo/typer">https://github.com/tiangolo/typer</a></p>
+<p><a href="https://github.com/vinta/awesome-python">https://github.com/vinta/awesome-python</a></p>
+<p><a href="https://github.com/pydata">https://github.com/pydata</a></p>
+<p>practical python proggramming dabeaz</p>
+<p><a href="http://people.duke.edu/~ccc14/sta-663-2017/">http://people.duke.edu/~ccc14/sta-663-2017/</a></p>
+<p><a href="https://www.kaggle.com/parulpandey/useful-python-libraries-for-data-science/notebook">https://www.kaggle.com/parulpandey/useful-python-libraries-for-data-science/notebook</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Cheatsheet">
+<a class="anchor" href="#Cheatsheet" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cheatsheet<a class="anchor-link" href="#Cheatsheet"> </a>
+</h3>
+<p><a href="https://gto76.github.io/python-cheatsheet/">https://gto76.github.io/python-cheatsheet/</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Kurse">
+<a class="anchor" href="#Kurse" aria-hidden="true"><span class="octicon octicon-link"></span></a>Kurse<a class="anchor-link" href="#Kurse"> </a>
+</h3>
+<p><a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/">https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="References">
+<a class="anchor" href="#References" aria-hidden="true"><span class="octicon octicon-link"></span></a>References<a class="anchor-link" href="#References"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<ol class="bibliography"></ol>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="ChristopherTh/statistics-blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/statistics-blog/python/2020/10/26/python.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/statistics-blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/statistics-blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/statistics-blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A Blog about explaining all different kinds of statistical topics.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/ChristopherTh" title="ChristopherTh"><svg class="svg-icon grey"><use xlink:href="/statistics-blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/ChristopherTh92" title="ChristopherTh92"><svg class="svg-icon grey"><use xlink:href="/statistics-blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
